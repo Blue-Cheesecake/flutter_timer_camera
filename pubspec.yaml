@@ -11,10 +11,20 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Camera
+  camera: ^0.10.5+4
+
+  # State Management
+  flutter_riverpod: ^2.4.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+
+  # Genarator
+  build_runner: 2.4.6
+  freezed: 2.4.2
 
 flutter:
 
