@@ -12,10 +12,11 @@ dependencies:
     sdk: flutter
 
   # Camera
-  camera: ^0.10.5+4
+  camera: 0.10.5+4
+  camera_platform_interface: 2.5.2
 
   # State Management
-  flutter_riverpod: ^2.4.0
+  flutter_riverpod: 2.4.0
 
 dev_dependencies:
   flutter_test:
