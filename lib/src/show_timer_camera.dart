@@ -1,6 +1,16 @@
-import 'package:camera/camera.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_timer_camera/flutter_timer_camera.dart';
 
-Future<XFile?> showTimerCamera({required BuildContext context}) async {
-  return null;
+import 'timer_camera_wd.dart';
+
+void showTimerCamera({
+  required BuildContext context,
+  required void Function(XFile capturedImage) onSubmit,
+}) async {
+  showModalBottomSheet(
+    context: context,
+    enableDrag: true,
+    isScrollControlled: true,
+    builder: (context) => TimerCamera(onSubmit: onSubmit),
+  );
 }
