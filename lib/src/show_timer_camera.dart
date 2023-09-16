@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'timer_camera_wd.dart';
 import 'utils/utils.dart';
@@ -15,7 +16,8 @@ void showTimerCamera({
       context: context,
       enableDrag: true,
       isScrollControlled: true,
-      builder: (context) => TimerCamera(onSubmit: onSubmit),
+      useSafeArea: true,
+      builder: (context) => ProviderScope(child: TimerCamera(onSubmit: onSubmit)),
     );
   });
 }

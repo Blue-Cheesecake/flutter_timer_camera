@@ -1,5 +1,5 @@
 import 'package:camera/camera.dart';
 
 class CameraOptions {
-  static late final List<CameraDescription> list;
+  static late List<CameraDescription> list;
 }

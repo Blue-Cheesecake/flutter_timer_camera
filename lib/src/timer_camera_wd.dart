@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_timer_camera/flutter_timer_camera.dart';
 
 import 'logic/logic.dart';
 import 'utils/utils.dart';
@@ -30,8 +31,18 @@ class _TimerCameraState extends ConsumerState<TimerCamera> {
   @override
   void initState() {
     super.initState();
+
+    CameraDescription? cameraDescription =
+        ref.read(timerCameraStateProvider.select((value) => value.cameraDescription));
+
+    if (cameraDescription == null) {
+      assert(CameraOptions.list.isNotEmpty, TimerCameraMessages.emptyCameraOptionsList);
+
+      cameraDescription = CameraOptions.list[0];
+    }
+
     _cameraController = CameraController(
-      ref.read(timerCameraStateProvider.select((value) => value.cameraDescription)) ?? CameraOptions.list[0],
+      cameraDescription,
       widget.resolutionPreset ?? ResolutionPreset.high,
       enableAudio: false,
       imageFormatGroup: widget.imageFormatGroup ?? ImageFormatGroup.yuv420,
@@ -63,6 +74,16 @@ class _TimerCameraState extends ConsumerState<TimerCamera> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(),
+        body: Stack(
+          children: [
+            CameraScreenWD(
+                cameraController: _cameraController, initializeControllerFuture: _initializeControllerFuture),
+          ],
+        ),
+      ),
+    );
   }
 }
