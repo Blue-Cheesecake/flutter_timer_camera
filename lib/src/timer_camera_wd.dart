@@ -13,7 +13,7 @@ class TimerCamera extends ConsumerStatefulWidget {
     this.imageFormatGroup,
     this.resolutionPreset,
     this.imageFit,
-    this.backButtonWidget,
+    this.backButton,
     Key? key,
   }) : super(key: key);
 
@@ -22,7 +22,7 @@ class TimerCamera extends ConsumerStatefulWidget {
   final ResolutionPreset? resolutionPreset;
   final ImageFormatGroup? imageFormatGroup;
   final BoxFit? imageFit;
-  final Widget? backButtonWidget;
+  final Widget? backButton;
 
   @override
   ConsumerState<TimerCamera> createState() => _TimerCameraState();
@@ -81,7 +81,7 @@ class _TimerCameraState extends ConsumerState<TimerCamera> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: BackButtonWD(child: widget.backButtonWidget),
+          leading: BackButtonWD(child: widget.backButton),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
