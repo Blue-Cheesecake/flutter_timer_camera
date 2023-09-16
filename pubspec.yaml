@@ -18,6 +18,9 @@ dependencies:
   # State Management
   flutter_riverpod: 2.4.0
 
+  # Generator
+  freezed_annotation: 2.4.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
