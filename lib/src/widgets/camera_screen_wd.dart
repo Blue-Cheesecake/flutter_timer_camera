@@ -7,11 +7,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../logic/logic.dart';
 
 class CameraScreenWD extends ConsumerWidget {
-  const CameraScreenWD({required this.cameraController, required this.initializeControllerFuture, Key? key})
-      : super(key: key);
+  const CameraScreenWD({
+    required this.cameraController,
+    required this.initializeControllerFuture,
+    this.imageFit,
+    Key? key,
+  }) : super(key: key);
 
   final CameraController cameraController;
   final Future<void> initializeControllerFuture;
+  final BoxFit? imageFit;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,7 +29,7 @@ class CameraScreenWD extends ConsumerWidget {
           width: constraints.maxWidth,
           height: constraints.maxHeight,
           // TODO: refactor to receive input from client
-          fit: BoxFit.cover,
+          fit: imageFit ?? BoxFit.cover,
         ),
       );
     }

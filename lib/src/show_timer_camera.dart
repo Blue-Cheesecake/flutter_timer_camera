@@ -8,6 +8,10 @@ import 'utils/utils.dart';
 void showTimerCamera({
   required BuildContext context,
   required OnCapturedImageCallback onSubmit,
+  final VoidCallback? onCameraAccessDenied,
+  final ResolutionPreset? resolutionPreset,
+  final ImageFormatGroup? imageFormatGroup,
+  final BoxFit? imageFit,
 }) async {
   availableCameras().then((value) {
     CameraOptions.list = value;
@@ -17,7 +21,15 @@ void showTimerCamera({
       enableDrag: true,
       isScrollControlled: true,
       useSafeArea: true,
-      builder: (context) => ProviderScope(child: TimerCamera(onSubmit: onSubmit)),
+      builder: (context) => ProviderScope(
+        child: TimerCamera(
+          onSubmit: onSubmit,
+          onCameraAccessDenied: onCameraAccessDenied,
+          resolutionPreset: resolutionPreset,
+          imageFormatGroup: imageFormatGroup,
+          imageFit: imageFit,
+        ),
+      ),
     );
   });
 }

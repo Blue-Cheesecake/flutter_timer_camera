@@ -12,6 +12,7 @@ class TimerCamera extends ConsumerStatefulWidget {
     this.onCameraAccessDenied,
     this.imageFormatGroup,
     this.resolutionPreset,
+    this.imageFit,
     Key? key,
   }) : super(key: key);
 
@@ -19,6 +20,7 @@ class TimerCamera extends ConsumerStatefulWidget {
   final VoidCallback? onCameraAccessDenied;
   final ResolutionPreset? resolutionPreset;
   final ImageFormatGroup? imageFormatGroup;
+  final BoxFit? imageFit;
 
   @override
   ConsumerState<TimerCamera> createState() => _TimerCameraState();
@@ -76,11 +78,18 @@ class _TimerCameraState extends ConsumerState<TimerCamera> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        extendBodyBehindAppBar: true,
         body: Stack(
           children: [
             CameraScreenWD(
-                cameraController: _cameraController, initializeControllerFuture: _initializeControllerFuture),
+              cameraController: _cameraController,
+              initializeControllerFuture: _initializeControllerFuture,
+              imageFit: widget.imageFit,
+            ),
           ],
         ),
       ),
