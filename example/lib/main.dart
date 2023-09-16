@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_timer_camera/flutter_timer_camera.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const App());
 }
 
