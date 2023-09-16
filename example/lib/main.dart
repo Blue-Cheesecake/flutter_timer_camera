@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_timer_camera/flutter_timer_camera.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const App());
 }
 
@@ -27,7 +30,12 @@ class _Home extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                showTimerCamera(
+                  context: context,
+                  onSubmit: (capturedImage) {},
+                );
+              },
               child: const Text('Open Camera'),
             )
           ],
