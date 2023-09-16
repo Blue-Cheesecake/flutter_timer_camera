@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_timer_camera/flutter_timer_camera.dart';
 
 import 'logic/logic.dart';
 import 'utils/utils.dart';
+import 'widgets/widgets.dart';
 
 class TimerCamera extends ConsumerStatefulWidget {
   const TimerCamera({
@@ -14,6 +14,9 @@ class TimerCamera extends ConsumerStatefulWidget {
     this.resolutionPreset,
     this.imageFit,
     this.backButton,
+    this.backButtonStyle,
+    this.switchCameraButton,
+    this.switchCameraButtonStyle,
     Key? key,
   }) : super(key: key);
 
@@ -23,6 +26,9 @@ class TimerCamera extends ConsumerStatefulWidget {
   final ImageFormatGroup? imageFormatGroup;
   final BoxFit? imageFit;
   final Widget? backButton;
+  final ButtonStyle? backButtonStyle;
+  final Widget? switchCameraButton;
+  final ButtonStyle? switchCameraButtonStyle;
 
   @override
   ConsumerState<TimerCamera> createState() => _TimerCameraState();
@@ -81,7 +87,13 @@ class _TimerCameraState extends ConsumerState<TimerCamera> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: BackButtonWD(child: widget.backButton),
+          leading: BackButtonWD(buttonStyle: widget.backButtonStyle, child: widget.backButton),
+          actions: [
+            SwitchCameraButtonWD(
+              buttonStyle: widget.backButtonStyle,
+              child: widget.switchCameraButton,
+            )
+          ],
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),

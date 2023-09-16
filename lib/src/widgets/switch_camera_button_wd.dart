@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BackButtonWD extends StatelessWidget {
-  const BackButtonWD({Key? key, this.child, this.buttonStyle}) : super(key: key);
+class SwitchCameraButtonWD extends StatelessWidget {
+  const SwitchCameraButtonWD({Key? key, this.child, this.buttonStyle}) : super(key: key);
 
   final Widget? child;
   final ButtonStyle? buttonStyle;
@@ -9,15 +9,13 @@ class BackButtonWD extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
+      onPressed: () {},
       splashRadius: 0.1,
       style: buttonStyle,
       icon: child ??
           const Icon(
-            Icons.keyboard_arrow_left_rounded,
-            size: 30,
+            Icons.sync_outlined,
+            size: 25,
           ),
     );
   }
