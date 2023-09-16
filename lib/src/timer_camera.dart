@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FlutterTimerCamera extends StatelessWidget {
-  const FlutterTimerCamera({Key? key}) : super(key: key);
+class TimerCamera extends StatelessWidget {
+  const TimerCamera({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
