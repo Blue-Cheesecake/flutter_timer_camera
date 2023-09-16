@@ -6,19 +6,21 @@ import 'timer_camera_wd.dart';
 import 'utils/utils.dart';
 
 void showTimerCamera({
-  required BuildContext context,
-  required OnCapturedImageCallback onSubmit,
+  required final BuildContext context,
+  required final OnCapturedImageCallback onSubmit,
+  final bool enableDrag = true,
   final VoidCallback? onCameraAccessDenied,
   final ResolutionPreset? resolutionPreset,
   final ImageFormatGroup? imageFormatGroup,
   final BoxFit? imageFit,
+  final Widget? backButtonWidget,
 }) async {
   availableCameras().then((value) {
     CameraOptions.list = value;
 
     showModalBottomSheet(
       context: context,
-      enableDrag: true,
+      enableDrag: enableDrag,
       isScrollControlled: true,
       useSafeArea: true,
       builder: (context) => ProviderScope(
@@ -28,6 +30,7 @@ void showTimerCamera({
           resolutionPreset: resolutionPreset,
           imageFormatGroup: imageFormatGroup,
           imageFit: imageFit,
+          backButtonWidget: backButtonWidget,
         ),
       ),
     );
