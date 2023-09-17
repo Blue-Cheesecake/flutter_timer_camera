@@ -16,12 +16,49 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TimerCameraState {
-  CameraDescription? get cameraDescription =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(CameraController cameraController,
+            int cameraOptionIndex, XFile? capturedImage)
+        normal,
+    required TResult Function() switching,
+  }) =>
       throw _privateConstructorUsedError;
-  XFile? get capturedImage => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $TimerCameraStateCopyWith<TimerCameraState> get copyWith =>
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CameraController cameraController, int cameraOptionIndex,
+            XFile? capturedImage)?
+        normal,
+    TResult? Function()? switching,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CameraController cameraController, int cameraOptionIndex,
+            XFile? capturedImage)?
+        normal,
+    TResult Function()? switching,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TimerCameraStateNormal value) normal,
+    required TResult Function(_TimerCameraStateSwitching value) switching,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TimerCameraStateNormal value)? normal,
+    TResult? Function(_TimerCameraStateSwitching value)? switching,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TimerCameraStateNormal value)? normal,
+    TResult Function(_TimerCameraStateSwitching value)? switching,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -30,8 +67,6 @@ abstract class $TimerCameraStateCopyWith<$Res> {
   factory $TimerCameraStateCopyWith(
           TimerCameraState value, $Res Function(TimerCameraState) then) =
       _$TimerCameraStateCopyWithImpl<$Res, TimerCameraState>;
-  @useResult
-  $Res call({CameraDescription? cameraDescription, XFile? capturedImage});
 }
 
 /// @nodoc
@@ -43,56 +78,44 @@ class _$TimerCameraStateCopyWithImpl<$Res, $Val extends TimerCameraState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? cameraDescription = freezed,
-    Object? capturedImage = freezed,
-  }) {
-    return _then(_value.copyWith(
-      cameraDescription: freezed == cameraDescription
-          ? _value.cameraDescription
-          : cameraDescription // ignore: cast_nullable_to_non_nullable
-              as CameraDescription?,
-      capturedImage: freezed == capturedImage
-          ? _value.capturedImage
-          : capturedImage // ignore: cast_nullable_to_non_nullable
-              as XFile?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_TimerCameraStateCopyWith<$Res>
-    implements $TimerCameraStateCopyWith<$Res> {
-  factory _$$_TimerCameraStateCopyWith(
-          _$_TimerCameraState value, $Res Function(_$_TimerCameraState) then) =
-      __$$_TimerCameraStateCopyWithImpl<$Res>;
-  @override
+abstract class _$$_TimerCameraStateNormalCopyWith<$Res> {
+  factory _$$_TimerCameraStateNormalCopyWith(_$_TimerCameraStateNormal value,
+          $Res Function(_$_TimerCameraStateNormal) then) =
+      __$$_TimerCameraStateNormalCopyWithImpl<$Res>;
   @useResult
-  $Res call({CameraDescription? cameraDescription, XFile? capturedImage});
+  $Res call(
+      {CameraController cameraController,
+      int cameraOptionIndex,
+      XFile? capturedImage});
 }
 
 /// @nodoc
-class __$$_TimerCameraStateCopyWithImpl<$Res>
-    extends _$TimerCameraStateCopyWithImpl<$Res, _$_TimerCameraState>
-    implements _$$_TimerCameraStateCopyWith<$Res> {
-  __$$_TimerCameraStateCopyWithImpl(
-      _$_TimerCameraState _value, $Res Function(_$_TimerCameraState) _then)
+class __$$_TimerCameraStateNormalCopyWithImpl<$Res>
+    extends _$TimerCameraStateCopyWithImpl<$Res, _$_TimerCameraStateNormal>
+    implements _$$_TimerCameraStateNormalCopyWith<$Res> {
+  __$$_TimerCameraStateNormalCopyWithImpl(_$_TimerCameraStateNormal _value,
+      $Res Function(_$_TimerCameraStateNormal) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cameraDescription = freezed,
+    Object? cameraController = null,
+    Object? cameraOptionIndex = null,
     Object? capturedImage = freezed,
   }) {
-    return _then(_$_TimerCameraState(
-      cameraDescription: freezed == cameraDescription
-          ? _value.cameraDescription
-          : cameraDescription // ignore: cast_nullable_to_non_nullable
-              as CameraDescription?,
+    return _then(_$_TimerCameraStateNormal(
+      cameraController: null == cameraController
+          ? _value.cameraController
+          : cameraController // ignore: cast_nullable_to_non_nullable
+              as CameraController,
+      cameraOptionIndex: null == cameraOptionIndex
+          ? _value.cameraOptionIndex
+          : cameraOptionIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       capturedImage: freezed == capturedImage
           ? _value.capturedImage
           : capturedImage // ignore: cast_nullable_to_non_nullable
@@ -103,54 +126,242 @@ class __$$_TimerCameraStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TimerCameraState implements _TimerCameraState {
-  _$_TimerCameraState({this.cameraDescription, this.capturedImage});
+class _$_TimerCameraStateNormal extends _TimerCameraStateNormal {
+  _$_TimerCameraStateNormal(
+      {required this.cameraController,
+      this.cameraOptionIndex = 0,
+      this.capturedImage})
+      : super._();
 
   @override
-  final CameraDescription? cameraDescription;
+  final CameraController cameraController;
+  @override
+  @JsonKey()
+  final int cameraOptionIndex;
   @override
   final XFile? capturedImage;
 
   @override
   String toString() {
-    return 'TimerCameraState(cameraDescription: $cameraDescription, capturedImage: $capturedImage)';
+    return 'TimerCameraState.normal(cameraController: $cameraController, cameraOptionIndex: $cameraOptionIndex, capturedImage: $capturedImage)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TimerCameraState &&
-            const DeepCollectionEquality()
-                .equals(other.cameraDescription, cameraDescription) &&
-            const DeepCollectionEquality()
-                .equals(other.capturedImage, capturedImage));
+            other is _$_TimerCameraStateNormal &&
+            (identical(other.cameraController, cameraController) ||
+                other.cameraController == cameraController) &&
+            (identical(other.cameraOptionIndex, cameraOptionIndex) ||
+                other.cameraOptionIndex == cameraOptionIndex) &&
+            (identical(other.capturedImage, capturedImage) ||
+                other.capturedImage == capturedImage));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(cameraDescription),
-      const DeepCollectionEquality().hash(capturedImage));
+      runtimeType, cameraController, cameraOptionIndex, capturedImage);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TimerCameraStateCopyWith<_$_TimerCameraState> get copyWith =>
-      __$$_TimerCameraStateCopyWithImpl<_$_TimerCameraState>(this, _$identity);
+  _$$_TimerCameraStateNormalCopyWith<_$_TimerCameraStateNormal> get copyWith =>
+      __$$_TimerCameraStateNormalCopyWithImpl<_$_TimerCameraStateNormal>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(CameraController cameraController,
+            int cameraOptionIndex, XFile? capturedImage)
+        normal,
+    required TResult Function() switching,
+  }) {
+    return normal(cameraController, cameraOptionIndex, capturedImage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CameraController cameraController, int cameraOptionIndex,
+            XFile? capturedImage)?
+        normal,
+    TResult? Function()? switching,
+  }) {
+    return normal?.call(cameraController, cameraOptionIndex, capturedImage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CameraController cameraController, int cameraOptionIndex,
+            XFile? capturedImage)?
+        normal,
+    TResult Function()? switching,
+    required TResult orElse(),
+  }) {
+    if (normal != null) {
+      return normal(cameraController, cameraOptionIndex, capturedImage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TimerCameraStateNormal value) normal,
+    required TResult Function(_TimerCameraStateSwitching value) switching,
+  }) {
+    return normal(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TimerCameraStateNormal value)? normal,
+    TResult? Function(_TimerCameraStateSwitching value)? switching,
+  }) {
+    return normal?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TimerCameraStateNormal value)? normal,
+    TResult Function(_TimerCameraStateSwitching value)? switching,
+    required TResult orElse(),
+  }) {
+    if (normal != null) {
+      return normal(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _TimerCameraState implements TimerCameraState {
-  factory _TimerCameraState(
-      {final CameraDescription? cameraDescription,
-      final XFile? capturedImage}) = _$_TimerCameraState;
+abstract class _TimerCameraStateNormal extends TimerCameraState {
+  factory _TimerCameraStateNormal(
+      {required final CameraController cameraController,
+      final int cameraOptionIndex,
+      final XFile? capturedImage}) = _$_TimerCameraStateNormal;
+  _TimerCameraStateNormal._() : super._();
+
+  CameraController get cameraController;
+  int get cameraOptionIndex;
+  XFile? get capturedImage;
+  @JsonKey(ignore: true)
+  _$$_TimerCameraStateNormalCopyWith<_$_TimerCameraStateNormal> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_TimerCameraStateSwitchingCopyWith<$Res> {
+  factory _$$_TimerCameraStateSwitchingCopyWith(
+          _$_TimerCameraStateSwitching value,
+          $Res Function(_$_TimerCameraStateSwitching) then) =
+      __$$_TimerCameraStateSwitchingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_TimerCameraStateSwitchingCopyWithImpl<$Res>
+    extends _$TimerCameraStateCopyWithImpl<$Res, _$_TimerCameraStateSwitching>
+    implements _$$_TimerCameraStateSwitchingCopyWith<$Res> {
+  __$$_TimerCameraStateSwitchingCopyWithImpl(
+      _$_TimerCameraStateSwitching _value,
+      $Res Function(_$_TimerCameraStateSwitching) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_TimerCameraStateSwitching extends _TimerCameraStateSwitching {
+  _$_TimerCameraStateSwitching() : super._();
 
   @override
-  CameraDescription? get cameraDescription;
+  String toString() {
+    return 'TimerCameraState.switching()';
+  }
+
   @override
-  XFile? get capturedImage;
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TimerCameraStateSwitching);
+  }
+
   @override
-  @JsonKey(ignore: true)
-  _$$_TimerCameraStateCopyWith<_$_TimerCameraState> get copyWith =>
-      throw _privateConstructorUsedError;
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(CameraController cameraController,
+            int cameraOptionIndex, XFile? capturedImage)
+        normal,
+    required TResult Function() switching,
+  }) {
+    return switching();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CameraController cameraController, int cameraOptionIndex,
+            XFile? capturedImage)?
+        normal,
+    TResult? Function()? switching,
+  }) {
+    return switching?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CameraController cameraController, int cameraOptionIndex,
+            XFile? capturedImage)?
+        normal,
+    TResult Function()? switching,
+    required TResult orElse(),
+  }) {
+    if (switching != null) {
+      return switching();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TimerCameraStateNormal value) normal,
+    required TResult Function(_TimerCameraStateSwitching value) switching,
+  }) {
+    return switching(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TimerCameraStateNormal value)? normal,
+    TResult? Function(_TimerCameraStateSwitching value)? switching,
+  }) {
+    return switching?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TimerCameraStateNormal value)? normal,
+    TResult Function(_TimerCameraStateSwitching value)? switching,
+    required TResult orElse(),
+  }) {
+    if (switching != null) {
+      return switching(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TimerCameraStateSwitching extends TimerCameraState {
+  factory _TimerCameraStateSwitching() = _$_TimerCameraStateSwitching;
+  _TimerCameraStateSwitching._() : super._();
 }
