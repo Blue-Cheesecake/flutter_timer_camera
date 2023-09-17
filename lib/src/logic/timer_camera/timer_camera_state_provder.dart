@@ -8,6 +8,7 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
   TimerCameraStateNotifier()
       : super(
           TimerCameraState.normal(
+            timerOption: TimerOption.none(),
             cameraController: CameraController(
               CameraOptions.list[0],
               ResolutionPreset.ultraHigh,
@@ -23,6 +24,7 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
     int? cameraOptionIndex,
   }) {
     state = TimerCameraState.normal(
+      timerOption: TimerOption.none(),
       cameraOptionIndex: cameraOptionIndex ?? 0,
       cameraController: CameraController(
         CameraOptions.list[cameraOptionIndex ?? 0],
@@ -34,10 +36,12 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
   }
 
   void switchCamera() {
-    final resolutionPreset = state.whenOrNull(normal: (cameraController, _, __) => cameraController.resolutionPreset)!;
-    final imageFormatGroup = state.whenOrNull(normal: (cameraController, _, __) => cameraController.imageFormatGroup)!;
-    var cameraIndex = state.whenOrNull(
-      normal: (_, cameraOptionIndex, __) => cameraOptionIndex,
+    final resolutionPreset =
+        state.whenOrNull(normal: (cameraController, _, __, ___, ____) => cameraController.resolutionPreset)!;
+    final imageFormatGroup =
+        state.whenOrNull(normal: (cameraController, _, __, ___, ____) => cameraController.imageFormatGroup)!;
+    int cameraIndex = state.whenOrNull(
+      normal: (_, __, cameraOptionIndex, ___, ____) => cameraOptionIndex,
     )!;
 
     state = TimerCameraState.switching();

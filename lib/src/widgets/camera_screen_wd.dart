@@ -25,7 +25,7 @@ class CameraScreenWD extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final XFile? capturedImage = ref.watch(timerCameraStateProvider).whenOrNull(
-          normal: (_, __, capturedImage) => capturedImage,
+          normal: (_, __, ___, capturedImage, ____) => capturedImage,
         );
 
     if (capturedImage != null) {
@@ -40,7 +40,7 @@ class CameraScreenWD extends ConsumerWidget {
     }
 
     final CameraController? cameraController = ref.watch(timerCameraStateProvider).whenOrNull(
-          normal: (cameraController, _, __) => cameraController,
+          normal: (cameraController, _, __, ___, ____) => cameraController,
         );
 
     if (cameraController == null) {
