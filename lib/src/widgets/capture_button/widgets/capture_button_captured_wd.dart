@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../logic/logic.dart';
+import '../../../utils/utils.dart';
 
 class CaptureButtonCapturedWD extends ConsumerWidget {
-  const CaptureButtonCapturedWD({Key? key, this.child}) : super(key: key);
+  const CaptureButtonCapturedWD({
+    required this.onSubmit,
+    Key? key,
+    this.child,
+  }) : super(key: key);
 
+  final OnCapturedImageCallback onSubmit;
   final Widget? child;
 
   @override
@@ -17,6 +23,7 @@ class CaptureButtonCapturedWD extends ConsumerWidget {
         if (isSwitching) {
           return;
         }
+        onSubmit(ref.read(timerCameraStateProvider.select((value) => value.capturedImage)));
         Navigator.of(context).pop();
       },
       child: child ??
