@@ -1,19 +1,20 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_timer_camera/flutter_timer_camera.dart';
 
-import 'logic/logic.dart';
 import 'utils/utils.dart';
+import 'widgets/widgets.dart';
 
-class TimerCamera extends ConsumerStatefulWidget {
+class TimerCamera extends StatelessWidget {
   const TimerCamera({
     required this.onSubmit,
     this.onCameraAccessDenied,
     this.imageFormatGroup,
     this.resolutionPreset,
     this.imageFit,
-    this.backButtonWidget,
+    this.backButton,
+    this.backButtonStyle,
+    this.switchCameraButton,
+    this.switchCameraButtonStyle,
     Key? key,
   }) : super(key: key);
 
@@ -22,66 +23,23 @@ class TimerCamera extends ConsumerStatefulWidget {
   final ResolutionPreset? resolutionPreset;
   final ImageFormatGroup? imageFormatGroup;
   final BoxFit? imageFit;
-  final Widget? backButtonWidget;
-
-  @override
-  ConsumerState<TimerCamera> createState() => _TimerCameraState();
-}
-
-class _TimerCameraState extends ConsumerState<TimerCamera> {
-  late CameraController _cameraController;
-  late Future<void> _initializeControllerFuture;
-
-  @override
-  void initState() {
-    super.initState();
-
-    CameraDescription? cameraDescription =
-        ref.read(timerCameraStateProvider.select((value) => value.cameraDescription));
-
-    if (cameraDescription == null) {
-      assert(CameraOptions.list.isNotEmpty, TimerCameraMessages.emptyCameraOptionsList);
-
-      cameraDescription = CameraOptions.list[0];
-    }
-
-    _cameraController = CameraController(
-      cameraDescription,
-      widget.resolutionPreset ?? ResolutionPreset.high,
-      enableAudio: false,
-      imageFormatGroup: widget.imageFormatGroup ?? ImageFormatGroup.yuv420,
-    );
-
-    _initializeControllerFuture = _cameraController.initialize().then((value) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    }).catchError((Object e) {
-      if (e is CameraException) {
-        switch (e.code) {
-          case 'CameraAccessDenied':
-            if (widget.onCameraAccessDenied != null) widget.onCameraAccessDenied!();
-            break;
-          default:
-            break;
-        }
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _cameraController.dispose();
-    super.dispose();
-  }
+  final Widget? backButton;
+  final ButtonStyle? backButtonStyle;
+  final Widget? switchCameraButton;
+  final ButtonStyle? switchCameraButtonStyle;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: BackButtonWD(child: widget.backButtonWidget),
+          leading: BackButtonWD(buttonStyle: backButtonStyle, child: backButton),
+          actions: [
+            SwitchCameraButtonWD(
+              buttonStyle: backButtonStyle,
+              child: switchCameraButton,
+            )
+          ],
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
@@ -89,9 +47,10 @@ class _TimerCameraState extends ConsumerState<TimerCamera> {
         body: Stack(
           children: [
             CameraScreenWD(
-              cameraController: _cameraController,
-              initializeControllerFuture: _initializeControllerFuture,
-              imageFit: widget.imageFit,
+              onCameraAccessDenied: onCameraAccessDenied,
+              resolutionPreset: resolutionPreset,
+              imageFormatGroup: imageFormatGroup,
+              imageFit: imageFit,
             ),
           ],
         ),

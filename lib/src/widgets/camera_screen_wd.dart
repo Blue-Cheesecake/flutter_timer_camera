@@ -2,25 +2,49 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../logic/logic.dart';
+import '../utils/utils.dart';
+import 'widgets.dart';
 
-class CameraScreenWD extends ConsumerWidget {
+class CameraScreenWD extends ConsumerStatefulWidget {
   const CameraScreenWD({
-    required this.cameraController,
-    required this.initializeControllerFuture,
+    this.onCameraAccessDenied,
+    this.resolutionPreset,
+    this.imageFormatGroup,
     this.imageFit,
     Key? key,
   }) : super(key: key);
 
-  final CameraController cameraController;
-  final Future<void> initializeControllerFuture;
+  final VoidCallback? onCameraAccessDenied;
+  final ResolutionPreset? resolutionPreset;
+  final ImageFormatGroup? imageFormatGroup;
   final BoxFit? imageFit;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final XFile? capturedImage = ref.watch(timerCameraStateProvider.select((value) => value.capturedImage));
+  ConsumerState<CameraScreenWD> createState() => _CameraScreenWDState();
+}
+
+class _CameraScreenWDState extends ConsumerState<CameraScreenWD> {
+  @override
+  void initState() {
+    super.initState();
+
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      ref.read(timerCameraStateProvider.notifier).updateCameraController(
+            resolutionPreset: widget.resolutionPreset,
+            imageFormatGroup: widget.imageFormatGroup,
+          );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final XFile? capturedImage = ref.watch(timerCameraStateProvider).whenOrNull(
+          normal: (_, __, capturedImage) => capturedImage,
+        );
 
     if (capturedImage != null) {
       return LayoutBuilder(
@@ -28,11 +52,30 @@ class CameraScreenWD extends ConsumerWidget {
           File(capturedImage.path),
           width: constraints.maxWidth,
           height: constraints.maxHeight,
-          // TODO: refactor to receive input from client
-          fit: imageFit ?? BoxFit.cover,
+          fit: widget.imageFit ?? BoxFit.cover,
         ),
       );
     }
+
+    final CameraController? cameraController = ref.watch(timerCameraStateProvider).whenOrNull(
+          normal: (cameraController, _, __) => cameraController,
+        );
+
+    if (cameraController == null) {
+      return const BlurBackgroundWD();
+    }
+
+    final Future<void> initializeControllerFuture = cameraController.initialize().catchError((Object e) {
+      if (e is CameraException) {
+        switch (e.code) {
+          case 'CameraAccessDenied':
+            if (widget.onCameraAccessDenied != null) widget.onCameraAccessDenied!();
+            return;
+          default:
+            break;
+        }
+      }
+    });
 
     return FutureBuilder(
       future: initializeControllerFuture,
@@ -47,7 +90,7 @@ class CameraScreenWD extends ConsumerWidget {
           );
         }
 
-        return const CircularProgressIndicator();
+        return const OnInitializingCameraWD();
       },
     );
   }
