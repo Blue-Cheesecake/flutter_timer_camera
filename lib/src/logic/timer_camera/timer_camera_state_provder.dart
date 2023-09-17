@@ -42,7 +42,7 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
 
     state = TimerCameraState.switching();
 
-    Future.delayed(const Duration(seconds: 2)).then((_) {
+    Future.delayed(const Duration(milliseconds: 100)).then((_) {
       updateCameraController(
         resolutionPreset: resolutionPreset,
         imageFormatGroup: imageFormatGroup,

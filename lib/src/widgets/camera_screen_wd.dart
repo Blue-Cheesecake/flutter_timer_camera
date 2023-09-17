@@ -6,6 +6,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../logic/logic.dart';
+import '../utils/utils.dart';
 import 'widgets.dart';
 
 class CameraScreenWD extends ConsumerStatefulWidget {
@@ -60,22 +61,16 @@ class _CameraScreenWDState extends ConsumerState<CameraScreenWD> {
           normal: (cameraController, _, __) => cameraController,
         );
 
-    print(cameraController);
-
     if (cameraController == null) {
       return const BlurBackgroundWD();
     }
 
-    final Future<void> initializeControllerFuture = cameraController.initialize().then((value) {
-      if (!context.mounted) {
-        return;
-      }
-    }).catchError((Object e) {
+    final Future<void> initializeControllerFuture = cameraController.initialize().catchError((Object e) {
       if (e is CameraException) {
         switch (e.code) {
           case 'CameraAccessDenied':
             if (widget.onCameraAccessDenied != null) widget.onCameraAccessDenied!();
-            break;
+            return;
           default:
             break;
         }
@@ -95,7 +90,7 @@ class _CameraScreenWDState extends ConsumerState<CameraScreenWD> {
           );
         }
 
-        return const CircularProgressIndicator();
+        return const OnInitializingCameraWD();
       },
     );
   }
