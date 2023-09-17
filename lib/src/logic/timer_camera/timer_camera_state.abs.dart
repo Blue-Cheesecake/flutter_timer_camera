@@ -1,20 +1,23 @@
 import 'package:camera/camera.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../utils/utils.dart';
+
 part 'timer_camera_state.abs.freezed.dart';
 
 @freezed
 class TimerCameraState with _$TimerCameraState {
   const TimerCameraState._();
 
-  factory TimerCameraState.normal({
+  factory TimerCameraState({
     required final CameraController cameraController,
-    @Default(0) final int cameraOptionIndex,
+    required final TimerOption timerOption,
     final XFile? capturedImage,
-  }) = _TimerCameraStateNormal;
+    @Default(0) final int cameraOptionIndex,
+    @Default(false) final bool isSwitching,
+    @Default(false) final bool isCounting,
+    @Default(0) final int counter,
+  }) = _TimerCameraState;
 
-  factory TimerCameraState.switching() = _TimerCameraStateSwitching;
-
-  bool get isNormal => this is _TimerCameraStateNormal;
-  bool get isSwitching => this is _TimerCameraStateSwitching;
+  bool get isGotImage => const TimerCameraState._().capturedImage != null;
 }

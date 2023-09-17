@@ -7,7 +7,8 @@ import 'timer_camera.dart';
 class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
   TimerCameraStateNotifier()
       : super(
-          TimerCameraState.normal(
+          TimerCameraState(
+            timerOption: TimerOption.none(),
             cameraController: CameraController(
               CameraOptions.list[0],
               ResolutionPreset.ultraHigh,
@@ -17,12 +18,35 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
           ),
         );
 
+  Future<void> startCounting() async {
+    state = state.copyWith(isCounting: true, counter: state.timerOption.startCounter);
+
+    int c = state.timerOption.startCounter;
+    while (c > 0) {
+      await Future.delayed(const Duration(seconds: 1));
+      c--;
+      state = state.copyWith(counter: c);
+    }
+
+    final XFile image = await state.cameraController.takePicture();
+
+    state = state.copyWith(capturedImage: image);
+
+    _stopCounting();
+  }
+
+  void _stopCounting() {
+    state = state.copyWith(isCounting: false, counter: 0);
+  }
+
   void updateCameraController({
+    TimerOption? timerOption,
     ResolutionPreset? resolutionPreset,
     ImageFormatGroup? imageFormatGroup,
     int? cameraOptionIndex,
   }) {
-    state = TimerCameraState.normal(
+    state = state.copyWith(
+      isSwitching: false,
       cameraOptionIndex: cameraOptionIndex ?? 0,
       cameraController: CameraController(
         CameraOptions.list[cameraOptionIndex ?? 0],
@@ -34,13 +58,9 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
   }
 
   void switchCamera() {
-    final resolutionPreset = state.whenOrNull(normal: (cameraController, _, __) => cameraController.resolutionPreset)!;
-    final imageFormatGroup = state.whenOrNull(normal: (cameraController, _, __) => cameraController.imageFormatGroup)!;
-    var cameraIndex = state.whenOrNull(
-      normal: (_, cameraOptionIndex, __) => cameraOptionIndex,
-    )!;
-
-    state = TimerCameraState.switching();
+    final resolutionPreset = state.cameraController.resolutionPreset;
+    final imageFormatGroup = state.cameraController.imageFormatGroup;
+    int cameraIndex = state.cameraOptionIndex;
 
     Future.delayed(const Duration(milliseconds: 100)).then((_) {
       updateCameraController(
