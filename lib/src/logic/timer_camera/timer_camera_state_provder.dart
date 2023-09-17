@@ -18,14 +18,35 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
           ),
         );
 
+  Future<void> startCounting() async {
+    state = state.copyWith(isCounting: true, counter: state.timerOption.startCounter);
+
+    int c = state.timerOption.startCounter;
+    while (c > 0) {
+      await Future.delayed(const Duration(seconds: 1));
+      c--;
+      state = state.copyWith(counter: c);
+    }
+
+    final XFile image = await state.cameraController.takePicture();
+
+    state = state.copyWith(capturedImage: image);
+
+    _stopCounting();
+  }
+
+  void _stopCounting() {
+    state = state.copyWith(isCounting: false, counter: 0);
+  }
+
   void updateCameraController({
+    TimerOption? timerOption,
     ResolutionPreset? resolutionPreset,
     ImageFormatGroup? imageFormatGroup,
     int? cameraOptionIndex,
   }) {
-    state = TimerCameraState(
+    state = state.copyWith(
       isSwitching: false,
-      timerOption: TimerOption.none(),
       cameraOptionIndex: cameraOptionIndex ?? 0,
       cameraController: CameraController(
         CameraOptions.list[cameraOptionIndex ?? 0],

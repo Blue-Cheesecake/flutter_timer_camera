@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TimerOption {
   String get label => throw _privateConstructorUsedError;
-  int get value => throw _privateConstructorUsedError;
+  int get startCounter => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TimerOptionCopyWith<TimerOption> get copyWith =>
@@ -30,7 +30,7 @@ abstract class $TimerOptionCopyWith<$Res> {
           TimerOption value, $Res Function(TimerOption) then) =
       _$TimerOptionCopyWithImpl<$Res, TimerOption>;
   @useResult
-  $Res call({String label, int value});
+  $Res call({String label, int startCounter});
 }
 
 /// @nodoc
@@ -47,16 +47,16 @@ class _$TimerOptionCopyWithImpl<$Res, $Val extends TimerOption>
   @override
   $Res call({
     Object? label = null,
-    Object? value = null,
+    Object? startCounter = null,
   }) {
     return _then(_value.copyWith(
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
               as String,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+      startCounter: null == startCounter
+          ? _value.startCounter
+          : startCounter // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -70,7 +70,7 @@ abstract class _$$_TimerOptionCopyWith<$Res>
       __$$_TimerOptionCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String label, int value});
+  $Res call({String label, int startCounter});
 }
 
 /// @nodoc
@@ -85,16 +85,16 @@ class __$$_TimerOptionCopyWithImpl<$Res>
   @override
   $Res call({
     Object? label = null,
-    Object? value = null,
+    Object? startCounter = null,
   }) {
     return _then(_$_TimerOption(
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
               as String,
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+      startCounter: null == startCounter
+          ? _value.startCounter
+          : startCounter // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -103,16 +103,16 @@ class __$$_TimerOptionCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TimerOption implements _TimerOption {
-  _$_TimerOption({required this.label, required this.value});
+  _$_TimerOption({required this.label, required this.startCounter});
 
   @override
   final String label;
   @override
-  final int value;
+  final int startCounter;
 
   @override
   String toString() {
-    return 'TimerOption(label: $label, value: $value)';
+    return 'TimerOption(label: $label, startCounter: $startCounter)';
   }
 
   @override
@@ -121,11 +121,12 @@ class _$_TimerOption implements _TimerOption {
         (other.runtimeType == runtimeType &&
             other is _$_TimerOption &&
             (identical(other.label, label) || other.label == label) &&
-            (identical(other.value, value) || other.value == value));
+            (identical(other.startCounter, startCounter) ||
+                other.startCounter == startCounter));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, label, value);
+  int get hashCode => Object.hash(runtimeType, label, startCounter);
 
   @JsonKey(ignore: true)
   @override
@@ -136,12 +137,13 @@ class _$_TimerOption implements _TimerOption {
 
 abstract class _TimerOption implements TimerOption {
   factory _TimerOption(
-      {required final String label, required final int value}) = _$_TimerOption;
+      {required final String label,
+      required final int startCounter}) = _$_TimerOption;
 
   @override
   String get label;
   @override
-  int get value;
+  int get startCounter;
   @override
   @JsonKey(ignore: true)
   _$$_TimerOptionCopyWith<_$_TimerOption> get copyWith =>

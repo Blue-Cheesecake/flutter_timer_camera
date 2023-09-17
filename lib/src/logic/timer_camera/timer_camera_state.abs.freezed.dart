@@ -22,6 +22,7 @@ mixin _$TimerCameraState {
   int get cameraOptionIndex => throw _privateConstructorUsedError;
   bool get isSwitching => throw _privateConstructorUsedError;
   bool get isCounting => throw _privateConstructorUsedError;
+  int get counter => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TimerCameraStateCopyWith<TimerCameraState> get copyWith =>
@@ -40,7 +41,8 @@ abstract class $TimerCameraStateCopyWith<$Res> {
       XFile? capturedImage,
       int cameraOptionIndex,
       bool isSwitching,
-      bool isCounting});
+      bool isCounting,
+      int counter});
 
   $TimerOptionCopyWith<$Res> get timerOption;
 }
@@ -64,6 +66,7 @@ class _$TimerCameraStateCopyWithImpl<$Res, $Val extends TimerCameraState>
     Object? cameraOptionIndex = null,
     Object? isSwitching = null,
     Object? isCounting = null,
+    Object? counter = null,
   }) {
     return _then(_value.copyWith(
       cameraController: null == cameraController
@@ -90,6 +93,10 @@ class _$TimerCameraStateCopyWithImpl<$Res, $Val extends TimerCameraState>
           ? _value.isCounting
           : isCounting // ignore: cast_nullable_to_non_nullable
               as bool,
+      counter: null == counter
+          ? _value.counter
+          : counter // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -116,7 +123,8 @@ abstract class _$$_TimerCameraStateCopyWith<$Res>
       XFile? capturedImage,
       int cameraOptionIndex,
       bool isSwitching,
-      bool isCounting});
+      bool isCounting,
+      int counter});
 
   @override
   $TimerOptionCopyWith<$Res> get timerOption;
@@ -139,6 +147,7 @@ class __$$_TimerCameraStateCopyWithImpl<$Res>
     Object? cameraOptionIndex = null,
     Object? isSwitching = null,
     Object? isCounting = null,
+    Object? counter = null,
   }) {
     return _then(_$_TimerCameraState(
       cameraController: null == cameraController
@@ -165,6 +174,10 @@ class __$$_TimerCameraStateCopyWithImpl<$Res>
           ? _value.isCounting
           : isCounting // ignore: cast_nullable_to_non_nullable
               as bool,
+      counter: null == counter
+          ? _value.counter
+          : counter // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -178,7 +191,8 @@ class _$_TimerCameraState extends _TimerCameraState {
       this.capturedImage,
       this.cameraOptionIndex = 0,
       this.isSwitching = false,
-      this.isCounting = false})
+      this.isCounting = false,
+      this.counter = 0})
       : super._();
 
   @override
@@ -196,10 +210,13 @@ class _$_TimerCameraState extends _TimerCameraState {
   @override
   @JsonKey()
   final bool isCounting;
+  @override
+  @JsonKey()
+  final int counter;
 
   @override
   String toString() {
-    return 'TimerCameraState(cameraController: $cameraController, timerOption: $timerOption, capturedImage: $capturedImage, cameraOptionIndex: $cameraOptionIndex, isSwitching: $isSwitching, isCounting: $isCounting)';
+    return 'TimerCameraState(cameraController: $cameraController, timerOption: $timerOption, capturedImage: $capturedImage, cameraOptionIndex: $cameraOptionIndex, isSwitching: $isSwitching, isCounting: $isCounting, counter: $counter)';
   }
 
   @override
@@ -218,12 +235,13 @@ class _$_TimerCameraState extends _TimerCameraState {
             (identical(other.isSwitching, isSwitching) ||
                 other.isSwitching == isSwitching) &&
             (identical(other.isCounting, isCounting) ||
-                other.isCounting == isCounting));
+                other.isCounting == isCounting) &&
+            (identical(other.counter, counter) || other.counter == counter));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, cameraController, timerOption,
-      capturedImage, cameraOptionIndex, isSwitching, isCounting);
+      capturedImage, cameraOptionIndex, isSwitching, isCounting, counter);
 
   @JsonKey(ignore: true)
   @override
@@ -239,7 +257,8 @@ abstract class _TimerCameraState extends TimerCameraState {
       final XFile? capturedImage,
       final int cameraOptionIndex,
       final bool isSwitching,
-      final bool isCounting}) = _$_TimerCameraState;
+      final bool isCounting,
+      final int counter}) = _$_TimerCameraState;
   _TimerCameraState._() : super._();
 
   @override
@@ -254,6 +273,8 @@ abstract class _TimerCameraState extends TimerCameraState {
   bool get isSwitching;
   @override
   bool get isCounting;
+  @override
+  int get counter;
   @override
   @JsonKey(ignore: true)
   _$$_TimerCameraStateCopyWith<_$_TimerCameraState> get copyWith =>
