@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:camera/camera.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -18,6 +20,10 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
           ),
         );
 
+  void updateCameraInitializationStatus(bool value) {
+    state = state.copyWith(isCameraInitialized: value);
+  }
+
   Future<void> startCounting() async {
     state = state.copyWith(isCounting: true, counter: state.timerOption.startCounter);
 
@@ -28,9 +34,12 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
       state = state.copyWith(counter: c);
     }
 
-    final XFile image = await state.cameraController.takePicture();
-
-    state = state.copyWith(capturedImage: image);
+    try {
+      final XFile image = await state.cameraController.takePicture();
+      state = state.copyWith(capturedImage: image);
+    } catch (e) {
+      log(e.toString());
+    }
 
     _stopCounting();
   }

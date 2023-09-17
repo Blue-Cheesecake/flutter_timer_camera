@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../logic/logic.dart';
+import 'widgets/widgets.dart';
+
 class CaptureButtonWD extends ConsumerWidget {
   const CaptureButtonWD({Key? key, this.childOnNormal, this.childOnCounting, this.childOnCaptured}) : super(key: key);
 
@@ -10,6 +13,13 @@ class CaptureButtonWD extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container();
+    if (ref.watch(timerCameraStateProvider.select((value) => value.isCounting))) {
+      return CaptureButtonCountingWD(child: childOnCounting);
+    }
+    if (ref.watch(timerCameraStateProvider.select((value) => value.isGotImage))) {
+      return CaptureButtonCapturedWD(child: childOnCaptured);
+    }
+
+    return CaptureButtonNormalWD(child: childOnNormal);
   }
 }

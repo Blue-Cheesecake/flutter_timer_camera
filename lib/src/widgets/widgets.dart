@@ -1,3 +1,4 @@
+export 'capture_button/capture_button.dart';
 export 'back_button_wd.dart';
 export 'blur_background_wd.dart';
 export 'camera_screen_wd.dart';

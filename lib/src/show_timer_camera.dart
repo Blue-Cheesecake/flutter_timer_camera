@@ -17,6 +17,7 @@ void showTimerCamera({
   final ButtonStyle? backButtonStyle,
   final Widget? switchCameraButton,
   final ButtonStyle? switchCameraButtonStyle,
+  final Alignment? captureButtonAlignment,
 }) async {
   availableCameras().then((value) {
     CameraOptions.list = value;
@@ -37,6 +38,7 @@ void showTimerCamera({
           backButtonStyle: backButtonStyle,
           switchCameraButton: switchCameraButton,
           switchCameraButtonStyle: switchCameraButtonStyle,
+          captureButtonAlignment: captureButtonAlignment,
         ),
       ),
     );
