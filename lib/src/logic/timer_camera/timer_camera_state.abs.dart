@@ -13,6 +13,7 @@ class TimerCameraState with _$TimerCameraState {
     required final CameraController cameraController,
     required final TimerOption timerOption,
     final XFile? capturedImage,
+    @Default(false) final bool isCameraInitialized,
     @Default(0) final int cameraOptionIndex,
     @Default(false) final bool isSwitching,
     @Default(false) final bool isCounting,

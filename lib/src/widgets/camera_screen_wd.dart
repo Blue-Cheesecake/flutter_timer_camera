@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../logic/logic.dart';
@@ -61,6 +62,9 @@ class CameraScreenWD extends ConsumerWidget {
       future: initializeControllerFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+            ref.read(timerCameraStateProvider.notifier).updateCameraInitializationStatus(true);
+          });
           return LayoutBuilder(
             builder: (context, constraints) => SizedBox(
               width: constraints.maxWidth,
@@ -69,6 +73,10 @@ class CameraScreenWD extends ConsumerWidget {
             ),
           );
         }
+
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          ref.read(timerCameraStateProvider.notifier).updateCameraInitializationStatus(false);
+        });
 
         return const OnInitializingCameraWD();
       },

@@ -13,12 +13,15 @@ class CaptureButtonNormalWD extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isSwitching = ref.watch(timerCameraStateProvider.select((value) => value.isSwitching));
+    final isCameraInitialized = ref.watch(timerCameraStateProvider.select((value) => value.isCameraInitialized));
 
     return GestureDetector(
       onTap: () {
-        if (isSwitching) {
+        if (isSwitching || !isCameraInitialized) {
           return;
         }
+
+        ref.read(timerCameraStateProvider.notifier).startCounting();
       },
       child: child ??
           Container(
