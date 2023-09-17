@@ -24,9 +24,7 @@ class CameraScreenWD extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final XFile? capturedImage = ref.watch(timerCameraStateProvider).whenOrNull(
-          normal: (_, __, ___, capturedImage, ____) => capturedImage,
-        );
+    final XFile? capturedImage = ref.watch(timerCameraStateProvider.select((value) => value.capturedImage));
 
     if (capturedImage != null) {
       return LayoutBuilder(
@@ -39,9 +37,9 @@ class CameraScreenWD extends ConsumerWidget {
       );
     }
 
-    final CameraController? cameraController = ref.watch(timerCameraStateProvider).whenOrNull(
-          normal: (cameraController, _, __, ___, ____) => cameraController,
-        );
+    final CameraController? cameraController = ref.watch(
+      timerCameraStateProvider.select((value) => value.cameraController),
+    );
 
     if (cameraController == null) {
       return const BlurBackgroundWD();

@@ -7,7 +7,7 @@ import 'timer_camera.dart';
 class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
   TimerCameraStateNotifier()
       : super(
-          TimerCameraState.normal(
+          TimerCameraState(
             timerOption: TimerOption.none(),
             cameraController: CameraController(
               CameraOptions.list[0],
@@ -23,7 +23,8 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
     ImageFormatGroup? imageFormatGroup,
     int? cameraOptionIndex,
   }) {
-    state = TimerCameraState.normal(
+    state = TimerCameraState(
+      isSwitching: false,
       timerOption: TimerOption.none(),
       cameraOptionIndex: cameraOptionIndex ?? 0,
       cameraController: CameraController(
@@ -36,15 +37,9 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
   }
 
   void switchCamera() {
-    final resolutionPreset =
-        state.whenOrNull(normal: (cameraController, _, __, ___, ____) => cameraController.resolutionPreset)!;
-    final imageFormatGroup =
-        state.whenOrNull(normal: (cameraController, _, __, ___, ____) => cameraController.imageFormatGroup)!;
-    int cameraIndex = state.whenOrNull(
-      normal: (_, __, cameraOptionIndex, ___, ____) => cameraOptionIndex,
-    )!;
-
-    state = TimerCameraState.switching();
+    final resolutionPreset = state.cameraController.resolutionPreset;
+    final imageFormatGroup = state.cameraController.imageFormatGroup;
+    int cameraIndex = state.cameraOptionIndex;
 
     Future.delayed(const Duration(milliseconds: 100)).then((_) {
       updateCameraController(

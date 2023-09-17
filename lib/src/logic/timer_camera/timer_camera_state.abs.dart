@@ -9,16 +9,12 @@ part 'timer_camera_state.abs.freezed.dart';
 class TimerCameraState with _$TimerCameraState {
   const TimerCameraState._();
 
-  factory TimerCameraState.normal({
+  factory TimerCameraState({
     required final CameraController cameraController,
     required final TimerOption timerOption,
-    @Default(0) final int cameraOptionIndex,
     final XFile? capturedImage,
+    @Default(0) final int cameraOptionIndex,
+    @Default(false) final bool isSwitching,
     @Default(false) final bool isCounting,
-  }) = _TimerCameraStateNormal;
-
-  factory TimerCameraState.switching() = _TimerCameraStateSwitching;
-
-  bool get isNormal => this is _TimerCameraStateNormal;
-  bool get isSwitching => this is _TimerCameraStateSwitching;
+  }) = _TimerCameraState;
 }
