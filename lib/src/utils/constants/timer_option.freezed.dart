@@ -103,7 +103,7 @@ class __$$_TimerOptionCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TimerOption implements _TimerOption {
-  _$_TimerOption({required this.label, required this.startCounter});
+  const _$_TimerOption({required this.label, required this.startCounter});
 
   @override
   final String label;
@@ -136,7 +136,7 @@ class _$_TimerOption implements _TimerOption {
 }
 
 abstract class _TimerOption implements TimerOption {
-  factory _TimerOption(
+  const factory _TimerOption(
       {required final String label,
       required final int startCounter}) = _$_TimerOption;
 

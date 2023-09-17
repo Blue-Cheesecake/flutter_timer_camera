@@ -18,6 +18,9 @@ void showTimerCamera({
   final Widget? switchCameraButton,
   final ButtonStyle? switchCameraButtonStyle,
   final Alignment? captureButtonAlignment,
+  final Widget? onNormalButton,
+  final Widget? onCountingButton,
+  final Widget? onCapturedButton,
 }) async {
   availableCameras().then((value) {
     CameraOptions.list = value;
