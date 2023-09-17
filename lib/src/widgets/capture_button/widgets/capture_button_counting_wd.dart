@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'widgets.dart';
+
 class CaptureButtonCountingWD extends StatelessWidget {
   const CaptureButtonCountingWD({Key? key, this.child}) : super(key: key);
 
@@ -7,9 +9,6 @@ class CaptureButtonCountingWD extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: child ?? Container(),
-    );
+    return child ?? const CaptureButtonNormalWD();
   }
 }

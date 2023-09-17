@@ -19,5 +19,5 @@ class TimerCameraState with _$TimerCameraState {
     @Default(0) final int counter,
   }) = _TimerCameraState;
 
-  bool get isGotImage => const TimerCameraState._().capturedImage != null;
+  bool get isGotImage => capturedImage != null;
 }

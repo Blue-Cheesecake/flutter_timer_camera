@@ -14,6 +14,7 @@ class TimerCamera extends StatelessWidget {
     this.backButtonStyle,
     this.switchCameraButton,
     this.switchCameraButtonStyle,
+    this.captureButtonAlignment,
     Key? key,
   }) : super(key: key);
 
@@ -26,6 +27,7 @@ class TimerCamera extends StatelessWidget {
   final ButtonStyle? backButtonStyle;
   final Widget? switchCameraButton;
   final ButtonStyle? switchCameraButtonStyle;
+  final Alignment? captureButtonAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +52,13 @@ class TimerCamera extends StatelessWidget {
               // resolutionPreset: resolutionPreset,
               // imageFormatGroup: imageFormatGroup,
               imageFit: imageFit,
+            ),
+            Align(
+              alignment: captureButtonAlignment ?? Alignment.bottomCenter,
+              child: const Padding(
+                padding: EdgeInsets.only(bottom: 35),
+                child: CaptureButtonWD(),
+              ),
             ),
           ],
         ),
