@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_camera/flutter_timer_camera.dart';
 
@@ -13,18 +15,29 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: _Home(),
     );
   }
 }
 
-class _Home extends StatelessWidget {
+class _Home extends StatefulWidget {
   const _Home({Key? key}) : super(key: key);
+
+  @override
+  State<_Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<_Home> {
+  XFile? currentImage;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Timer Camera')),
+      appBar: AppBar(
+        title: const Text('Timer Camera'),
+        centerTitle: true,
+      ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -33,11 +46,22 @@ class _Home extends StatelessWidget {
               onPressed: () {
                 showTimerCamera(
                   context: context,
-                  onSubmit: (capturedImage) {},
+                  onSubmit: (capturedImage) {
+                    setState(() {
+                      currentImage = capturedImage;
+                    });
+                  },
                 );
               },
               child: const Text('Open Camera'),
-            )
+            ),
+            currentImage == null
+                ? const SizedBox.shrink()
+                : SizedBox(
+                    width: 300,
+                    height: 300,
+                    child: Image.file(File(currentImage!.path)),
+                  ),
           ],
         ),
       ),
