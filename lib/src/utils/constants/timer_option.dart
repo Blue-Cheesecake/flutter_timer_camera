@@ -6,12 +6,12 @@ part 'timer_option.freezed.dart';
 
 @freezed
 class TimerOption with _$TimerOption {
-  factory TimerOption({
+  const factory TimerOption({
     required final String label,
     required final int startCounter,
   }) = _TimerOption;
 
-  factory TimerOption.none() => TimerOption(label: TimerCameraMessages.none, startCounter: 0);
-  factory TimerOption.threeSec() => TimerOption(label: TimerCameraMessages.threeSec, startCounter: 3);
-  factory TimerOption.tenSec() => TimerOption(label: TimerCameraMessages.tenSec, startCounter: 10);
+  factory TimerOption.none() => const TimerOption(label: TimerCameraMessages.none, startCounter: 0);
+  factory TimerOption.threeSec() => const TimerOption(label: TimerCameraMessages.threeSec, startCounter: 3);
+  factory TimerOption.tenSec() => const TimerOption(label: TimerCameraMessages.tenSec, startCounter: 10);
 }
