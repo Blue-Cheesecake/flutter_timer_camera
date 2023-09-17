@@ -2,14 +2,13 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../logic/logic.dart';
 import '../utils/utils.dart';
 import 'widgets.dart';
 
-class CameraScreenWD extends ConsumerStatefulWidget {
+class CameraScreenWD extends ConsumerWidget {
   const CameraScreenWD({
     this.onCameraAccessDenied,
     this.resolutionPreset,
@@ -24,24 +23,7 @@ class CameraScreenWD extends ConsumerStatefulWidget {
   final BoxFit? imageFit;
 
   @override
-  ConsumerState<CameraScreenWD> createState() => _CameraScreenWDState();
-}
-
-class _CameraScreenWDState extends ConsumerState<CameraScreenWD> {
-  @override
-  void initState() {
-    super.initState();
-
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref.read(timerCameraStateProvider.notifier).updateCameraController(
-            resolutionPreset: widget.resolutionPreset,
-            imageFormatGroup: widget.imageFormatGroup,
-          );
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final XFile? capturedImage = ref.watch(timerCameraStateProvider).whenOrNull(
           normal: (_, __, capturedImage) => capturedImage,
         );
@@ -52,7 +34,7 @@ class _CameraScreenWDState extends ConsumerState<CameraScreenWD> {
           File(capturedImage.path),
           width: constraints.maxWidth,
           height: constraints.maxHeight,
-          fit: widget.imageFit ?? BoxFit.cover,
+          fit: imageFit ?? BoxFit.cover,
         ),
       );
     }
@@ -69,7 +51,7 @@ class _CameraScreenWDState extends ConsumerState<CameraScreenWD> {
       if (e is CameraException) {
         switch (e.code) {
           case 'CameraAccessDenied':
-            if (widget.onCameraAccessDenied != null) widget.onCameraAccessDenied!();
+            if (onCameraAccessDenied != null) onCameraAccessDenied!();
             return;
           default:
             break;

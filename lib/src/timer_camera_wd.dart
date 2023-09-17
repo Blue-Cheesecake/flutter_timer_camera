@@ -1,4 +1,3 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 import 'utils/utils.dart';
@@ -8,8 +7,8 @@ class TimerCamera extends StatelessWidget {
   const TimerCamera({
     required this.onSubmit,
     this.onCameraAccessDenied,
-    this.imageFormatGroup,
-    this.resolutionPreset,
+    // this.imageFormatGroup,
+    // this.resolutionPreset,
     this.imageFit,
     this.backButton,
     this.backButtonStyle,
@@ -20,8 +19,8 @@ class TimerCamera extends StatelessWidget {
 
   final OnCapturedImageCallback onSubmit;
   final VoidCallback? onCameraAccessDenied;
-  final ResolutionPreset? resolutionPreset;
-  final ImageFormatGroup? imageFormatGroup;
+  // final ResolutionPreset? resolutionPreset;
+  // final ImageFormatGroup? imageFormatGroup;
   final BoxFit? imageFit;
   final Widget? backButton;
   final ButtonStyle? backButtonStyle;
@@ -48,8 +47,8 @@ class TimerCamera extends StatelessWidget {
           children: [
             CameraScreenWD(
               onCameraAccessDenied: onCameraAccessDenied,
-              resolutionPreset: resolutionPreset,
-              imageFormatGroup: imageFormatGroup,
+              // resolutionPreset: resolutionPreset,
+              // imageFormatGroup: imageFormatGroup,
               imageFit: imageFit,
             ),
           ],
