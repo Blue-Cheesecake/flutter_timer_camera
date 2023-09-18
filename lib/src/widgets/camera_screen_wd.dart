@@ -9,7 +9,7 @@ import '../logic/logic.dart';
 import '../utils/utils.dart';
 import 'widgets.dart';
 
-class CameraScreenWD extends ConsumerStatefulWidget {
+class CameraScreenWD extends ConsumerWidget {
   const CameraScreenWD({
     this.onCameraAccessDenied,
     this.resolutionPreset,
@@ -24,27 +24,8 @@ class CameraScreenWD extends ConsumerStatefulWidget {
   final BoxFit? imageFit;
 
   @override
-  ConsumerState<CameraScreenWD> createState() => _CameraScreenWDState();
-}
-
-class _CameraScreenWDState extends ConsumerState<CameraScreenWD> {
-  @override
-  void initState() {
-    super.initState();
-
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref.read(timerCameraStateProvider.notifier).updateCameraController(
-            resolutionPreset: widget.resolutionPreset,
-            imageFormatGroup: widget.imageFormatGroup,
-          );
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final XFile? capturedImage = ref.watch(timerCameraStateProvider).whenOrNull(
-          normal: (_, __, capturedImage) => capturedImage,
-        );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final XFile? capturedImage = ref.watch(timerCameraStateProvider.select((value) => value.capturedImage));
 
     if (capturedImage != null) {
       return LayoutBuilder(
@@ -52,14 +33,14 @@ class _CameraScreenWDState extends ConsumerState<CameraScreenWD> {
           File(capturedImage.path),
           width: constraints.maxWidth,
           height: constraints.maxHeight,
-          fit: widget.imageFit ?? BoxFit.cover,
+          fit: imageFit ?? BoxFit.cover,
         ),
       );
     }
 
-    final CameraController? cameraController = ref.watch(timerCameraStateProvider).whenOrNull(
-          normal: (cameraController, _, __) => cameraController,
-        );
+    final CameraController? cameraController = ref.watch(
+      timerCameraStateProvider.select((value) => value.cameraController),
+    );
 
     if (cameraController == null) {
       return const BlurBackgroundWD();
@@ -69,7 +50,7 @@ class _CameraScreenWDState extends ConsumerState<CameraScreenWD> {
       if (e is CameraException) {
         switch (e.code) {
           case 'CameraAccessDenied':
-            if (widget.onCameraAccessDenied != null) widget.onCameraAccessDenied!();
+            if (onCameraAccessDenied != null) onCameraAccessDenied!();
             return;
           default:
             break;
@@ -81,6 +62,9 @@ class _CameraScreenWDState extends ConsumerState<CameraScreenWD> {
       future: initializeControllerFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+            ref.read(timerCameraStateProvider.notifier).updateCameraInitializationStatus(true);
+          });
           return LayoutBuilder(
             builder: (context, constraints) => SizedBox(
               width: constraints.maxWidth,
@@ -89,6 +73,10 @@ class _CameraScreenWDState extends ConsumerState<CameraScreenWD> {
             ),
           );
         }
+
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          ref.read(timerCameraStateProvider.notifier).updateCameraInitializationStatus(false);
+        });
 
         return const OnInitializingCameraWD();
       },

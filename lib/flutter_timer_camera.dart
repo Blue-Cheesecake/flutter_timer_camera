@@ -3,6 +3,7 @@ library flutter_timer_camera;
 export 'flutter_timer_camera.dart';
 export 'src/show_timer_camera.dart';
 export 'src/src.dart';
+export 'src/models/models.dart' show TimerOptionModel, TimerOptionStyleParamsModel;
 export 'package:camera_platform_interface/camera_platform_interface.dart'
     show
         CameraDescription,
