@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TimerOptionStyleParamsModel {
   const TimerOptionStyleParamsModel({
     this.initialValue,
-    this.children,
+    // this.children,
     this.decoration,
     this.thumbDecoration,
     this.duration,
@@ -11,7 +11,7 @@ class TimerOptionStyleParamsModel {
   });
 
   final int? initialValue;
-  final Map<int, Widget>? children;
+  // final Map<int, Widget>? children;
   final BoxDecoration? decoration;
   final BoxDecoration? thumbDecoration;
   final Duration? duration;

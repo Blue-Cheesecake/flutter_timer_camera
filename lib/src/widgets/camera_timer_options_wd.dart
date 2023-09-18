@@ -26,21 +26,21 @@ class CameraTimerOptionsWD extends ConsumerWidget {
     final tenSec = TimerOptionModel.tenSec(indicator: 3);
 
     return CustomSlidingSegmentedControl(
-      children: timerOptionStyleParams.children ??
-          {
-            1: Text(
-              timerNone.label,
-              style: timerNone.indicator == currentTimerIndicator ? _activeTextStyle() : _inactiveTextStyle(),
-            ),
-            2: Text(
-              threeSec.label,
-              style: threeSec.indicator == currentTimerIndicator ? _activeTextStyle() : _inactiveTextStyle(),
-            ),
-            3: Text(
-              tenSec.label,
-              style: tenSec.indicator == currentTimerIndicator ? _activeTextStyle() : _inactiveTextStyle(),
-            ),
-          },
+      // TODO: add children from client
+      children: {
+        1: Text(
+          timerNone.label,
+          style: timerNone.indicator == currentTimerIndicator ? _activeTextStyle() : _inactiveTextStyle(),
+        ),
+        2: Text(
+          threeSec.label,
+          style: threeSec.indicator == currentTimerIndicator ? _activeTextStyle() : _inactiveTextStyle(),
+        ),
+        3: Text(
+          tenSec.label,
+          style: tenSec.indicator == currentTimerIndicator ? _activeTextStyle() : _inactiveTextStyle(),
+        ),
+      },
       decoration: timerOptionStyleParams.decoration ??
           BoxDecoration(
             color: Colors.black.withOpacity(0.5),
