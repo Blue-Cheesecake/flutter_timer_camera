@@ -35,6 +35,10 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
     while (c > 0) {
       await Future.delayed(const Duration(seconds: 1));
       c--;
+      // NOTE: prevent modifiying state after called dispose
+      if (!mounted) {
+        return;
+      }
       state = state.copyWith(timerOptionCounter: c);
     }
 
