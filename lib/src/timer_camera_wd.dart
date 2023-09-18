@@ -64,6 +64,10 @@ class TimerCamera extends StatelessWidget {
               // imageFormatGroup: imageFormatGroup,
               imageFit: imageFit,
             ),
+            const Align(
+              alignment: Alignment.center,
+              child: CounterWD(),
+            ),
             Align(
               alignment: captureButtonAlignment ?? Alignment.bottomCenter,
               child: Padding(
