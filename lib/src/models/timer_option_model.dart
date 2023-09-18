@@ -12,19 +12,32 @@ class TimerOptionModel with _$TimerOptionModel {
     required final int indicator,
   }) = _TimerOptionModel;
 
-  factory TimerOptionModel.none({required final int indicator}) => TimerOptionModel(
+  factory TimerOptionModel.none({final int? indicator}) => TimerOptionModel(
         label: TimerCameraMessages.none,
         startCounter: 0,
-        indicator: indicator,
+        indicator: indicator ?? 1,
       );
-  factory TimerOptionModel.threeSec({required final int indicator}) => TimerOptionModel(
+  factory TimerOptionModel.threeSec({final int? indicator}) => TimerOptionModel(
         label: TimerCameraMessages.threeSec,
         startCounter: 3,
-        indicator: indicator,
+        indicator: indicator ?? 2,
       );
-  factory TimerOptionModel.tenSec({required final int indicator}) => TimerOptionModel(
+  factory TimerOptionModel.tenSec({final int? indicator}) => TimerOptionModel(
         label: TimerCameraMessages.tenSec,
         startCounter: 10,
-        indicator: indicator,
+        indicator: indicator ?? 3,
       );
+
+  factory TimerOptionModel.fromIndicator({required final int indicator}) {
+    switch (indicator) {
+      case 1:
+        return TimerOptionModel.none();
+      case 2:
+        return TimerOptionModel.threeSec();
+      case 3:
+        return TimerOptionModel.tenSec();
+      default:
+        return TimerOptionModel.none();
+    }
+  }
 }

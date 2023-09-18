@@ -16,7 +16,6 @@ class TimerCameraState with _$TimerCameraState {
     @Default(0) final int cameraOptionIndex,
     @Default(false) final bool isSwitching,
     @Default(false) final bool isCounting,
-    @Default(0) final int counter,
   }) = _TimerCameraState;
 
   bool get isGotImage => capturedImage != null;
