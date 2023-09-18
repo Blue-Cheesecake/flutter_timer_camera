@@ -24,6 +24,7 @@ void showTimerCamera({
   final Widget? onCapturedButton,
   final Alignment? timerOptionAlignment,
   final TimerOptionStyleParamsModel? timerOptionStyleParamsModel,
+  final TextStyle? counterTextStyle,
 }) async {
   availableCameras().then((value) {
     CameraOptions.list = value;
@@ -47,6 +48,7 @@ void showTimerCamera({
           captureButtonAlignment: captureButtonAlignment,
           timerOptionAlignment: timerOptionAlignment,
           timerOptionStyleParamsModel: timerOptionStyleParamsModel ?? const TimerOptionStyleParamsModel(),
+          counterTextStyle: counterTextStyle,
         ),
       ),
     );
