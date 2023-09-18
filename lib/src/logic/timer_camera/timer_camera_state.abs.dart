@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../utils/utils.dart';
+import '../../models/models.dart';
 
 part 'timer_camera_state.abs.freezed.dart';
 
@@ -11,7 +11,7 @@ class TimerCameraState with _$TimerCameraState {
 
   factory TimerCameraState({
     required final CameraController cameraController,
-    required final TimerOption timerOption,
+    required final TimerOptionModel timerOption,
     final XFile? capturedImage,
     @Default(false) final bool isCameraInitialized,
     @Default(0) final int cameraOptionIndex,

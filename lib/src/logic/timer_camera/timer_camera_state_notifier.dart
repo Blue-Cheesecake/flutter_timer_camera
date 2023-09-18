@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:camera/camera.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../models/models.dart';
 import '../../utils/utils.dart';
 import 'timer_camera.dart';
 
@@ -10,7 +11,7 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
   TimerCameraStateNotifier()
       : super(
           TimerCameraState(
-            timerOption: TimerOption.none(),
+            timerOption: TimerOptionModel.none(),
             cameraController: CameraController(
               CameraOptions.list[0],
               ResolutionPreset.ultraHigh,
@@ -24,7 +25,7 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
     state = state.copyWith(isCameraInitialized: value);
   }
 
-  void updateTimerOption(TimerOption value) {
+  void updateTimerOption(TimerOptionModel value) {
     state = state.copyWith(timerOption: value);
   }
 
@@ -53,7 +54,7 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
   }
 
   void updateCameraController({
-    TimerOption? timerOption,
+    TimerOptionModel? timerOption,
     ResolutionPreset? resolutionPreset,
     ImageFormatGroup? imageFormatGroup,
     int? cameraOptionIndex,

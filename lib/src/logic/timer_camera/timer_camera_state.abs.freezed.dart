@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TimerCameraState {
   CameraController get cameraController => throw _privateConstructorUsedError;
-  TimerOption get timerOption => throw _privateConstructorUsedError;
+  TimerOptionModel get timerOption => throw _privateConstructorUsedError;
   XFile? get capturedImage => throw _privateConstructorUsedError;
   bool get isCameraInitialized => throw _privateConstructorUsedError;
   int get cameraOptionIndex => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $TimerCameraStateCopyWith<$Res> {
   @useResult
   $Res call(
       {CameraController cameraController,
-      TimerOption timerOption,
+      TimerOptionModel timerOption,
       XFile? capturedImage,
       bool isCameraInitialized,
       int cameraOptionIndex,
@@ -46,7 +46,7 @@ abstract class $TimerCameraStateCopyWith<$Res> {
       bool isCounting,
       int counter});
 
-  $TimerOptionCopyWith<$Res> get timerOption;
+  $TimerOptionModelCopyWith<$Res> get timerOption;
 }
 
 /// @nodoc
@@ -79,7 +79,7 @@ class _$TimerCameraStateCopyWithImpl<$Res, $Val extends TimerCameraState>
       timerOption: null == timerOption
           ? _value.timerOption
           : timerOption // ignore: cast_nullable_to_non_nullable
-              as TimerOption,
+              as TimerOptionModel,
       capturedImage: freezed == capturedImage
           ? _value.capturedImage
           : capturedImage // ignore: cast_nullable_to_non_nullable
@@ -109,8 +109,8 @@ class _$TimerCameraStateCopyWithImpl<$Res, $Val extends TimerCameraState>
 
   @override
   @pragma('vm:prefer-inline')
-  $TimerOptionCopyWith<$Res> get timerOption {
-    return $TimerOptionCopyWith<$Res>(_value.timerOption, (value) {
+  $TimerOptionModelCopyWith<$Res> get timerOption {
+    return $TimerOptionModelCopyWith<$Res>(_value.timerOption, (value) {
       return _then(_value.copyWith(timerOption: value) as $Val);
     });
   }
@@ -126,7 +126,7 @@ abstract class _$$_TimerCameraStateCopyWith<$Res>
   @useResult
   $Res call(
       {CameraController cameraController,
-      TimerOption timerOption,
+      TimerOptionModel timerOption,
       XFile? capturedImage,
       bool isCameraInitialized,
       int cameraOptionIndex,
@@ -135,7 +135,7 @@ abstract class _$$_TimerCameraStateCopyWith<$Res>
       int counter});
 
   @override
-  $TimerOptionCopyWith<$Res> get timerOption;
+  $TimerOptionModelCopyWith<$Res> get timerOption;
 }
 
 /// @nodoc
@@ -166,7 +166,7 @@ class __$$_TimerCameraStateCopyWithImpl<$Res>
       timerOption: null == timerOption
           ? _value.timerOption
           : timerOption // ignore: cast_nullable_to_non_nullable
-              as TimerOption,
+              as TimerOptionModel,
       capturedImage: freezed == capturedImage
           ? _value.capturedImage
           : capturedImage // ignore: cast_nullable_to_non_nullable
@@ -212,7 +212,7 @@ class _$_TimerCameraState extends _TimerCameraState {
   @override
   final CameraController cameraController;
   @override
-  final TimerOption timerOption;
+  final TimerOptionModel timerOption;
   @override
   final XFile? capturedImage;
   @override
@@ -280,7 +280,7 @@ class _$_TimerCameraState extends _TimerCameraState {
 abstract class _TimerCameraState extends TimerCameraState {
   factory _TimerCameraState(
       {required final CameraController cameraController,
-      required final TimerOption timerOption,
+      required final TimerOptionModel timerOption,
       final XFile? capturedImage,
       final bool isCameraInitialized,
       final int cameraOptionIndex,
@@ -292,7 +292,7 @@ abstract class _TimerCameraState extends TimerCameraState {
   @override
   CameraController get cameraController;
   @override
-  TimerOption get timerOption;
+  TimerOptionModel get timerOption;
   @override
   XFile? get capturedImage;
   @override
