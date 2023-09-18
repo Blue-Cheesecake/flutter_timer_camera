@@ -53,6 +53,7 @@ class CameraTimerOptionsWD extends ConsumerWidget {
           ),
       duration: timerOptionStyleParams.duration ?? const Duration(milliseconds: 150),
       curve: timerOptionStyleParams.curve ?? Curves.easeInToLinear,
+      isDisabled: ref.watch(timerCameraStateProvider.select((value) => value.isCounting)),
       onValueChanged: (value) {
         ref
             .read(timerCameraStateProvider.notifier)

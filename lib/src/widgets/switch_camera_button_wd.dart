@@ -12,9 +12,10 @@ class SwitchCameraButtonWD extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isOnSwitching = ref.watch(timerCameraStateProvider.select((value) => value.isSwitching));
+    final isCounting = ref.watch(timerCameraStateProvider.select((value) => value.isCounting));
 
     return IconButton(
-      onPressed: isOnSwitching
+      onPressed: isOnSwitching || isCounting
           ? null
           : () {
               ref.read(timerCameraStateProvider.notifier).switchCamera();

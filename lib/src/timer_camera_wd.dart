@@ -21,6 +21,7 @@ class TimerCamera extends StatelessWidget {
     this.onCountingButton,
     this.onCapturedButton,
     this.timerOptionAlignment,
+    this.counterTextStyle,
     Key? key,
   }) : super(key: key);
 
@@ -39,6 +40,7 @@ class TimerCamera extends StatelessWidget {
   final Widget? onCapturedButton;
   final Alignment? timerOptionAlignment;
   final TimerOptionStyleParamsModel timerOptionStyleParamsModel;
+  final TextStyle? counterTextStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +65,10 @@ class TimerCamera extends StatelessWidget {
               // resolutionPreset: resolutionPreset,
               // imageFormatGroup: imageFormatGroup,
               imageFit: imageFit,
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: CounterWD(textStyle: counterTextStyle),
             ),
             Align(
               alignment: captureButtonAlignment ?? Alignment.bottomCenter,
