@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TimerOptionModel {
   String get label => throw _privateConstructorUsedError;
   int get startCounter => throw _privateConstructorUsedError;
+  int get indicator => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TimerOptionModelCopyWith<TimerOptionModel> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $TimerOptionModelCopyWith<$Res> {
           TimerOptionModel value, $Res Function(TimerOptionModel) then) =
       _$TimerOptionModelCopyWithImpl<$Res, TimerOptionModel>;
   @useResult
-  $Res call({String label, int startCounter});
+  $Res call({String label, int startCounter, int indicator});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$TimerOptionModelCopyWithImpl<$Res, $Val extends TimerOptionModel>
   $Res call({
     Object? label = null,
     Object? startCounter = null,
+    Object? indicator = null,
   }) {
     return _then(_value.copyWith(
       label: null == label
@@ -57,6 +59,10 @@ class _$TimerOptionModelCopyWithImpl<$Res, $Val extends TimerOptionModel>
       startCounter: null == startCounter
           ? _value.startCounter
           : startCounter // ignore: cast_nullable_to_non_nullable
+              as int,
+      indicator: null == indicator
+          ? _value.indicator
+          : indicator // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -70,7 +76,7 @@ abstract class _$$_TimerOptionModelCopyWith<$Res>
       __$$_TimerOptionModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String label, int startCounter});
+  $Res call({String label, int startCounter, int indicator});
 }
 
 /// @nodoc
@@ -86,6 +92,7 @@ class __$$_TimerOptionModelCopyWithImpl<$Res>
   $Res call({
     Object? label = null,
     Object? startCounter = null,
+    Object? indicator = null,
   }) {
     return _then(_$_TimerOptionModel(
       label: null == label
@@ -96,6 +103,10 @@ class __$$_TimerOptionModelCopyWithImpl<$Res>
           ? _value.startCounter
           : startCounter // ignore: cast_nullable_to_non_nullable
               as int,
+      indicator: null == indicator
+          ? _value.indicator
+          : indicator // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -103,16 +114,21 @@ class __$$_TimerOptionModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_TimerOptionModel implements _TimerOptionModel {
-  const _$_TimerOptionModel({required this.label, required this.startCounter});
+  _$_TimerOptionModel(
+      {required this.label,
+      required this.startCounter,
+      required this.indicator});
 
   @override
   final String label;
   @override
   final int startCounter;
+  @override
+  final int indicator;
 
   @override
   String toString() {
-    return 'TimerOptionModel(label: $label, startCounter: $startCounter)';
+    return 'TimerOptionModel(label: $label, startCounter: $startCounter, indicator: $indicator)';
   }
 
   @override
@@ -122,11 +138,13 @@ class _$_TimerOptionModel implements _TimerOptionModel {
             other is _$_TimerOptionModel &&
             (identical(other.label, label) || other.label == label) &&
             (identical(other.startCounter, startCounter) ||
-                other.startCounter == startCounter));
+                other.startCounter == startCounter) &&
+            (identical(other.indicator, indicator) ||
+                other.indicator == indicator));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, label, startCounter);
+  int get hashCode => Object.hash(runtimeType, label, startCounter, indicator);
 
   @JsonKey(ignore: true)
   @override
@@ -136,14 +154,17 @@ class _$_TimerOptionModel implements _TimerOptionModel {
 }
 
 abstract class _TimerOptionModel implements TimerOptionModel {
-  const factory _TimerOptionModel(
+  factory _TimerOptionModel(
       {required final String label,
-      required final int startCounter}) = _$_TimerOptionModel;
+      required final int startCounter,
+      required final int indicator}) = _$_TimerOptionModel;
 
   @override
   String get label;
   @override
   int get startCounter;
+  @override
+  int get indicator;
   @override
   @JsonKey(ignore: true)
   _$$_TimerOptionModelCopyWith<_$_TimerOptionModel> get copyWith =>

@@ -79,7 +79,7 @@ class TimerCamera extends StatelessWidget {
             Align(
               alignment: timerOptionAlignment ?? Alignment.bottomCenter,
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 100),
+                padding: const EdgeInsets.only(bottom: 120),
                 child: CameraTimerOptionsWD(
                   timerOptionStyleParams: timerOptionStyleParamsModel,
                 ),

@@ -11,7 +11,6 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
   TimerCameraStateNotifier()
       : super(
           TimerCameraState(
-            timerOption: TimerOptionModel.none(),
             cameraController: CameraController(
               CameraOptions.list[0],
               ResolutionPreset.ultraHigh,
@@ -25,14 +24,14 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
     state = state.copyWith(isCameraInitialized: value);
   }
 
-  void updateTimerOption(TimerOptionModel value) {
-    state = state.copyWith(timerOption: value);
+  void updateTimerOptionIndicator(int value) {
+    state = state.copyWith(timerOptionIndicator: value);
   }
 
   Future<void> startCounting() async {
-    state = state.copyWith(isCounting: true, counter: state.timerOption.startCounter);
+    state = state.copyWith(isCounting: true, counter: state.timerOptionIndicator);
 
-    int c = state.timerOption.startCounter;
+    int c = state.timerOptionCounter;
     while (c > 0) {
       await Future.delayed(const Duration(seconds: 1));
       c--;

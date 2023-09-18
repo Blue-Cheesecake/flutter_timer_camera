@@ -17,8 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TimerCameraState {
   CameraController get cameraController => throw _privateConstructorUsedError;
-  TimerOptionModel get timerOption => throw _privateConstructorUsedError;
   XFile? get capturedImage => throw _privateConstructorUsedError;
+  int get timerOptionCounter => throw _privateConstructorUsedError;
+  int get timerOptionIndicator => throw _privateConstructorUsedError;
   bool get isCameraInitialized => throw _privateConstructorUsedError;
   int get cameraOptionIndex => throw _privateConstructorUsedError;
   bool get isSwitching => throw _privateConstructorUsedError;
@@ -38,15 +39,14 @@ abstract class $TimerCameraStateCopyWith<$Res> {
   @useResult
   $Res call(
       {CameraController cameraController,
-      TimerOptionModel timerOption,
       XFile? capturedImage,
+      int timerOptionCounter,
+      int timerOptionIndicator,
       bool isCameraInitialized,
       int cameraOptionIndex,
       bool isSwitching,
       bool isCounting,
       int counter});
-
-  $TimerOptionModelCopyWith<$Res> get timerOption;
 }
 
 /// @nodoc
@@ -63,8 +63,9 @@ class _$TimerCameraStateCopyWithImpl<$Res, $Val extends TimerCameraState>
   @override
   $Res call({
     Object? cameraController = null,
-    Object? timerOption = null,
     Object? capturedImage = freezed,
+    Object? timerOptionCounter = null,
+    Object? timerOptionIndicator = null,
     Object? isCameraInitialized = null,
     Object? cameraOptionIndex = null,
     Object? isSwitching = null,
@@ -76,14 +77,18 @@ class _$TimerCameraStateCopyWithImpl<$Res, $Val extends TimerCameraState>
           ? _value.cameraController
           : cameraController // ignore: cast_nullable_to_non_nullable
               as CameraController,
-      timerOption: null == timerOption
-          ? _value.timerOption
-          : timerOption // ignore: cast_nullable_to_non_nullable
-              as TimerOptionModel,
       capturedImage: freezed == capturedImage
           ? _value.capturedImage
           : capturedImage // ignore: cast_nullable_to_non_nullable
               as XFile?,
+      timerOptionCounter: null == timerOptionCounter
+          ? _value.timerOptionCounter
+          : timerOptionCounter // ignore: cast_nullable_to_non_nullable
+              as int,
+      timerOptionIndicator: null == timerOptionIndicator
+          ? _value.timerOptionIndicator
+          : timerOptionIndicator // ignore: cast_nullable_to_non_nullable
+              as int,
       isCameraInitialized: null == isCameraInitialized
           ? _value.isCameraInitialized
           : isCameraInitialized // ignore: cast_nullable_to_non_nullable
@@ -106,14 +111,6 @@ class _$TimerCameraStateCopyWithImpl<$Res, $Val extends TimerCameraState>
               as int,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TimerOptionModelCopyWith<$Res> get timerOption {
-    return $TimerOptionModelCopyWith<$Res>(_value.timerOption, (value) {
-      return _then(_value.copyWith(timerOption: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -126,16 +123,14 @@ abstract class _$$_TimerCameraStateCopyWith<$Res>
   @useResult
   $Res call(
       {CameraController cameraController,
-      TimerOptionModel timerOption,
       XFile? capturedImage,
+      int timerOptionCounter,
+      int timerOptionIndicator,
       bool isCameraInitialized,
       int cameraOptionIndex,
       bool isSwitching,
       bool isCounting,
       int counter});
-
-  @override
-  $TimerOptionModelCopyWith<$Res> get timerOption;
 }
 
 /// @nodoc
@@ -150,8 +145,9 @@ class __$$_TimerCameraStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? cameraController = null,
-    Object? timerOption = null,
     Object? capturedImage = freezed,
+    Object? timerOptionCounter = null,
+    Object? timerOptionIndicator = null,
     Object? isCameraInitialized = null,
     Object? cameraOptionIndex = null,
     Object? isSwitching = null,
@@ -163,14 +159,18 @@ class __$$_TimerCameraStateCopyWithImpl<$Res>
           ? _value.cameraController
           : cameraController // ignore: cast_nullable_to_non_nullable
               as CameraController,
-      timerOption: null == timerOption
-          ? _value.timerOption
-          : timerOption // ignore: cast_nullable_to_non_nullable
-              as TimerOptionModel,
       capturedImage: freezed == capturedImage
           ? _value.capturedImage
           : capturedImage // ignore: cast_nullable_to_non_nullable
               as XFile?,
+      timerOptionCounter: null == timerOptionCounter
+          ? _value.timerOptionCounter
+          : timerOptionCounter // ignore: cast_nullable_to_non_nullable
+              as int,
+      timerOptionIndicator: null == timerOptionIndicator
+          ? _value.timerOptionIndicator
+          : timerOptionIndicator // ignore: cast_nullable_to_non_nullable
+              as int,
       isCameraInitialized: null == isCameraInitialized
           ? _value.isCameraInitialized
           : isCameraInitialized // ignore: cast_nullable_to_non_nullable
@@ -200,8 +200,9 @@ class __$$_TimerCameraStateCopyWithImpl<$Res>
 class _$_TimerCameraState extends _TimerCameraState {
   _$_TimerCameraState(
       {required this.cameraController,
-      required this.timerOption,
       this.capturedImage,
+      this.timerOptionCounter = 0,
+      this.timerOptionIndicator = 1,
       this.isCameraInitialized = false,
       this.cameraOptionIndex = 0,
       this.isSwitching = false,
@@ -212,9 +213,13 @@ class _$_TimerCameraState extends _TimerCameraState {
   @override
   final CameraController cameraController;
   @override
-  final TimerOptionModel timerOption;
-  @override
   final XFile? capturedImage;
+  @override
+  @JsonKey()
+  final int timerOptionCounter;
+  @override
+  @JsonKey()
+  final int timerOptionIndicator;
   @override
   @JsonKey()
   final bool isCameraInitialized;
@@ -233,7 +238,7 @@ class _$_TimerCameraState extends _TimerCameraState {
 
   @override
   String toString() {
-    return 'TimerCameraState(cameraController: $cameraController, timerOption: $timerOption, capturedImage: $capturedImage, isCameraInitialized: $isCameraInitialized, cameraOptionIndex: $cameraOptionIndex, isSwitching: $isSwitching, isCounting: $isCounting, counter: $counter)';
+    return 'TimerCameraState(cameraController: $cameraController, capturedImage: $capturedImage, timerOptionCounter: $timerOptionCounter, timerOptionIndicator: $timerOptionIndicator, isCameraInitialized: $isCameraInitialized, cameraOptionIndex: $cameraOptionIndex, isSwitching: $isSwitching, isCounting: $isCounting, counter: $counter)';
   }
 
   @override
@@ -243,10 +248,12 @@ class _$_TimerCameraState extends _TimerCameraState {
             other is _$_TimerCameraState &&
             (identical(other.cameraController, cameraController) ||
                 other.cameraController == cameraController) &&
-            (identical(other.timerOption, timerOption) ||
-                other.timerOption == timerOption) &&
             (identical(other.capturedImage, capturedImage) ||
                 other.capturedImage == capturedImage) &&
+            (identical(other.timerOptionCounter, timerOptionCounter) ||
+                other.timerOptionCounter == timerOptionCounter) &&
+            (identical(other.timerOptionIndicator, timerOptionIndicator) ||
+                other.timerOptionIndicator == timerOptionIndicator) &&
             (identical(other.isCameraInitialized, isCameraInitialized) ||
                 other.isCameraInitialized == isCameraInitialized) &&
             (identical(other.cameraOptionIndex, cameraOptionIndex) ||
@@ -262,8 +269,9 @@ class _$_TimerCameraState extends _TimerCameraState {
   int get hashCode => Object.hash(
       runtimeType,
       cameraController,
-      timerOption,
       capturedImage,
+      timerOptionCounter,
+      timerOptionIndicator,
       isCameraInitialized,
       cameraOptionIndex,
       isSwitching,
@@ -280,8 +288,9 @@ class _$_TimerCameraState extends _TimerCameraState {
 abstract class _TimerCameraState extends TimerCameraState {
   factory _TimerCameraState(
       {required final CameraController cameraController,
-      required final TimerOptionModel timerOption,
       final XFile? capturedImage,
+      final int timerOptionCounter,
+      final int timerOptionIndicator,
       final bool isCameraInitialized,
       final int cameraOptionIndex,
       final bool isSwitching,
@@ -292,9 +301,11 @@ abstract class _TimerCameraState extends TimerCameraState {
   @override
   CameraController get cameraController;
   @override
-  TimerOptionModel get timerOption;
-  @override
   XFile? get capturedImage;
+  @override
+  int get timerOptionCounter;
+  @override
+  int get timerOptionIndicator;
   @override
   bool get isCameraInitialized;
   @override
