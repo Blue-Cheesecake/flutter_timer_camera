@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'models/models.dart';
 import 'timer_camera_wd.dart';
 import 'utils/utils.dart';
 
@@ -21,6 +22,8 @@ void showTimerCamera({
   final Widget? onNormalButton,
   final Widget? onCountingButton,
   final Widget? onCapturedButton,
+  final Alignment? timerOptionAlignment,
+  final TimerOptionStyleParamsModel timerOptionStyleParamsModel = const TimerOptionStyleParamsModel(),
 }) async {
   availableCameras().then((value) {
     CameraOptions.list = value;
@@ -42,6 +45,8 @@ void showTimerCamera({
           switchCameraButton: switchCameraButton,
           switchCameraButtonStyle: switchCameraButtonStyle,
           captureButtonAlignment: captureButtonAlignment,
+          timerOptionAlignment: timerOptionAlignment,
+          timerOptionStyleParamsModel: timerOptionStyleParamsModel,
         ),
       ),
     );

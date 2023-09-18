@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../models/models.dart';
+
 class CameraTimerOptionsWD extends StatelessWidget {
-  const CameraTimerOptionsWD({Key? key}) : super(key: key);
+  const CameraTimerOptionsWD({required this.timerOptionStyleParams, Key? key}) : super(key: key);
+
+  final TimerOptionStyleParamsModel timerOptionStyleParams;
 
   @override
   Widget build(BuildContext context) {

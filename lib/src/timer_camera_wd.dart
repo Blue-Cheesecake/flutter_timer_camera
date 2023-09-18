@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'models/models.dart';
 import 'utils/utils.dart';
 import 'widgets/widgets.dart';
 
 class TimerCamera extends StatelessWidget {
   const TimerCamera({
     required this.onSubmit,
+    required this.timerOptionStyleParamsModel,
     this.onCameraAccessDenied,
     // this.imageFormatGroup,
     // this.resolutionPreset,
@@ -18,6 +20,7 @@ class TimerCamera extends StatelessWidget {
     this.onNormalButton,
     this.onCountingButton,
     this.onCapturedButton,
+    this.timerOptionAlignment,
     Key? key,
   }) : super(key: key);
 
@@ -34,6 +37,8 @@ class TimerCamera extends StatelessWidget {
   final Widget? onNormalButton;
   final Widget? onCountingButton;
   final Widget? onCapturedButton;
+  final Alignment? timerOptionAlignment;
+  final TimerOptionStyleParamsModel timerOptionStyleParamsModel;
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +76,15 @@ class TimerCamera extends StatelessWidget {
                 ),
               ),
             ),
+            Align(
+              alignment: timerOptionAlignment ?? Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 100),
+                child: CameraTimerOptionsWD(
+                  timerOptionStyleParams: timerOptionStyleParamsModel,
+                ),
+              ),
+            )
           ],
         ),
       ),
