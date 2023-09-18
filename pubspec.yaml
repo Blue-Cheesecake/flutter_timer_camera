@@ -21,6 +21,9 @@ dependencies:
   # Generator
   freezed_annotation: 2.4.1
 
+  # Sliding
+  custom_sliding_segmented_control: 1.7.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

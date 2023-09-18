@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:camera/camera.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../models/models.dart';
 import '../../utils/utils.dart';
 import 'timer_camera.dart';
 
@@ -10,7 +11,6 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
   TimerCameraStateNotifier()
       : super(
           TimerCameraState(
-            timerOption: TimerOption.none(),
             cameraController: CameraController(
               CameraOptions.list[0],
               ResolutionPreset.ultraHigh,
@@ -24,18 +24,18 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
     state = state.copyWith(isCameraInitialized: value);
   }
 
-  void updateTimerOption(TimerOption value) {
-    state = state.copyWith(timerOption: value);
+  void updateTimerOptionIndicator(TimerOptionModel timerOption) {
+    state = state.copyWith(timerOptionIndicator: timerOption.indicator, timerOptionCounter: timerOption.startCounter);
   }
 
   Future<void> startCounting() async {
-    state = state.copyWith(isCounting: true, counter: state.timerOption.startCounter);
+    state = state.copyWith(isCounting: true);
 
-    int c = state.timerOption.startCounter;
+    int c = state.timerOptionCounter;
     while (c > 0) {
       await Future.delayed(const Duration(seconds: 1));
       c--;
-      state = state.copyWith(counter: c);
+      state = state.copyWith(timerOptionCounter: c);
     }
 
     try {
@@ -49,11 +49,11 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
   }
 
   void _stopCounting() {
-    state = state.copyWith(isCounting: false, counter: 0);
+    state = state.copyWith(isCounting: false, timerOptionCounter: 0);
   }
 
   void updateCameraController({
-    TimerOption? timerOption,
+    TimerOptionModel? timerOption,
     ResolutionPreset? resolutionPreset,
     ImageFormatGroup? imageFormatGroup,
     int? cameraOptionIndex,
