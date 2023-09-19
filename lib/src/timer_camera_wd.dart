@@ -25,21 +25,65 @@ class TimerCamera extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  /// The callback function after successfully capturing image
+  ///
+  /// This's usually an update function after getting image from my package
+  ///
   final OnCapturedImageCallback onSubmit;
+
+  /// Callback function that is triggered when try to open camera with unauthorized access.
+  ///
   final VoidCallback? onCameraAccessDenied;
+
   // final ResolutionPreset? resolutionPreset;
   // final ImageFormatGroup? imageFormatGroup;
+
+  /// Specifies how the captured image should fit within the bounds of the camera view.
+  ///
   final BoxFit? imageFit;
+
+  /// Custom widget for the back button.
+  ///
   final Widget? backButton;
+
+  /// Style for the back button.
+  ///
   final ButtonStyle? backButtonStyle;
+
+  /// Custom widget for the switch camera button.
+  ///
   final Widget? switchCameraButton;
+
+  /// Style for the switch camera button.
+  ///
   final ButtonStyle? switchCameraButtonStyle;
+
+  /// Alignment for the capture button.
+  ///
   final Alignment? captureButtonAlignment;
+
+  /// Custom widget to display when the capture button is in its normal state.
+  ///
   final Widget? onNormalButton;
+
+  /// Custom widget to display when the capture button is counting down.
+  ///
   final Widget? onCountingButton;
+
+  /// Custom widget to display after the image has been captured.
+  ///
   final Widget? onCapturedButton;
+
+  /// Alignment for the timer options.
+  ///
   final Alignment? timerOptionAlignment;
+
+  /// Styling parameters for the timer options.
+  ///
   final TimerOptionStyleParamsModel timerOptionStyleParamsModel;
+
+  /// Text style for the counter timer display.
+  ///
   final TextStyle? counterTextStyle;
 
   @override
