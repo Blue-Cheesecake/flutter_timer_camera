@@ -8,11 +8,6 @@ import 'utils/utils.dart';
 
 void showTimerCamera({
   required final BuildContext context,
-
-  /// The callback function after successfully capturing image
-  ///
-  /// This's usually an update function after getting image from my package
-  ///
   required final OnCapturedImageCallback onSubmit,
   final bool enableDrag = false,
   final VoidCallback? onCameraAccessDenied,
