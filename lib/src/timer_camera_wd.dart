@@ -25,6 +25,10 @@ class TimerCamera extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  /// The callback function after successfully capturing image
+  ///
+  /// This's usually an update function after getting image from my package
+  ///
   final OnCapturedImageCallback onSubmit;
   final VoidCallback? onCameraAccessDenied;
   // final ResolutionPreset? resolutionPreset;
