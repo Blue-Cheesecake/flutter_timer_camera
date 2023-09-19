@@ -12,17 +12,17 @@ dependencies:
     sdk: flutter
 
   # Camera
-  camera: 0.10.5+4
-  camera_platform_interface: 2.5.2
+  camera: ^0.10.5+4
+  camera_platform_interface: ^2.5.2
 
   # State Management
-  flutter_riverpod: 2.4.0
+  flutter_riverpod: ^2.4.0
 
   # Generator
-  freezed_annotation: 2.4.1
+  freezed_annotation: ^2.4.1
 
   # Sliding
-  custom_sliding_segmented_control: 1.7.5
+  custom_sliding_segmented_control: ^1.7.5
 
 dev_dependencies:
   flutter_test:
@@ -30,8 +30,8 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
   # Genarator
-  build_runner: 2.4.6
-  freezed: 2.4.2
+  build_runner: ^2.4.6
+  freezed: ^2.4.2
 
 flutter:
 
