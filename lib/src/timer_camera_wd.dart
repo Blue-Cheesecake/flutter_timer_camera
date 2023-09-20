@@ -12,8 +12,8 @@ class TimerCamera extends StatelessWidget {
     // this.imageFormatGroup,
     // this.resolutionPreset,
     this.imageFit,
-    this.backButton,
-    this.backButtonStyle,
+    this.backButtonOnNormal,
+    this.backButtonOnCaptured,
     this.switchCameraButton,
     this.switchCameraButtonStyle,
     this.captureButtonAlignment,
@@ -44,11 +44,13 @@ class TimerCamera extends StatelessWidget {
 
   /// Custom widget for the back button.
   ///
-  final Widget? backButton;
+  /// No need to put any [GestureDetector] or [InkWell]. Just pure widget without handling press
+  final Widget? backButtonOnNormal;
 
   /// Style for the back button.
   ///
-  final ButtonStyle? backButtonStyle;
+  /// No need to put any [GestureDetector] or [InkWell]. Just pure widget without handling press
+  final Widget? backButtonOnCaptured;
 
   /// Custom widget for the switch camera button.
   ///
@@ -91,10 +93,13 @@ class TimerCamera extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: BackButtonWD(buttonStyle: backButtonStyle, child: backButton),
+          leading: BackButtonWD(
+            childOnNormal: backButtonOnNormal,
+            childOnCaptured: backButtonOnCaptured,
+          ),
           actions: [
             SwitchCameraButtonWD(
-              buttonStyle: backButtonStyle,
+              buttonStyle: switchCameraButtonStyle,
               child: switchCameraButton,
             )
           ],
