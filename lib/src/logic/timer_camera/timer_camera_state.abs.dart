@@ -3,6 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'timer_camera_state.abs.freezed.dart';
 
+/// Represents the state of the camera timer used in this package.
+///
 @freezed
 class TimerCameraState with _$TimerCameraState {
   const TimerCameraState._();

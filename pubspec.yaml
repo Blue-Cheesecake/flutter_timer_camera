@@ -1,6 +1,6 @@
 name: flutter_timer_camera
 description: A Flutter package that allows you to open the camera and capture images with a timer logic. Perfect for those moments when you need a delay before the shot!
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/Blue-Cheesecake/flutter_timer_camera
 
 environment:
