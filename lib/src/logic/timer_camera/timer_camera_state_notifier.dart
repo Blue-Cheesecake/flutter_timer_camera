@@ -28,6 +28,10 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
     state = state.copyWith(timerOptionIndicator: timerOption.indicator, timerOptionCounter: timerOption.startCounter);
   }
 
+  void emptyCapturedImage() {
+    state = state.copyWith(capturedImage: null);
+  }
+
   Future<void> startCounting() async {
     state = state.copyWith(isCounting: true);
 
