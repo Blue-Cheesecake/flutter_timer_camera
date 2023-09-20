@@ -5,15 +5,26 @@ import 'package:flutter_timer_camera/src/logic/logic.dart';
 
 import '../models/models.dart';
 
+/// A widget that displays a segmented control for camera timer options.
+///
+/// This widget allows users to select a timer option for the camera.
+/// The appearance and behavior of the segmented control can be customized
+/// using the [timerOptionStyleParams].
 class CameraTimerOptionsWD extends ConsumerWidget {
   const CameraTimerOptionsWD({required this.timerOptionStyleParams, Key? key}) : super(key: key);
 
+  /// The style parameters for customizing the appearance and behavior of the segmented control passed from User
+  ///
   final TimerOptionStyleParamsModel timerOptionStyleParams;
 
+  /// Returns the default text style for the active timer option.
+  ///
   TextStyle _activeTextStyle() {
     return const TextStyle(fontSize: 13);
   }
 
+  /// Returns the default text style for the inactive timer option.
+  ///
   TextStyle _inactiveTextStyle() {
     return const TextStyle(fontSize: 13, color: Colors.white);
   }
