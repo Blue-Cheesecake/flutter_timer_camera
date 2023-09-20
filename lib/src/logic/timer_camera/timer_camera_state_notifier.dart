@@ -99,6 +99,7 @@ class TimerCameraStateNotifier extends StateNotifier<TimerCameraState> {
   }
 
   /// Switches the camera.
+  ///
   void switchCamera() {
     final resolutionPreset = state.cameraController.resolutionPreset;
     final imageFormatGroup = state.cameraController.imageFormatGroup;
