@@ -7,17 +7,16 @@ class BackButtonOnNormalWD extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return child ??
-        IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          splashRadius: 0.1,
-          icon: child ??
-              const Icon(
-                Icons.keyboard_arrow_left_rounded,
-                size: 30,
-              ),
-        );
+    return IconButton(
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+      splashRadius: 0.1,
+      icon: child ??
+          const Icon(
+            Icons.close,
+            size: 30,
+          ),
+    );
   }
 }
