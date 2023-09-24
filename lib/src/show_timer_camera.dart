@@ -25,7 +25,16 @@ void showTimerCamera({
   final Alignment? timerOptionAlignment,
   final TimerOptionStyleParamsModel? timerOptionStyleParamsModel,
   final TextStyle? counterTextStyle,
+  final List<TimerOption>? timerOptions,
+  final int defaultTimerOptionIndex = 0,
 }) async {
+  if (timerOptions != null) {
+    assert(defaultTimerOptionIndex < timerOptions.length);
+  } else {
+    // Use 3 because the default timer option
+    assert(defaultTimerOptionIndex < 3);
+  }
+
   availableCameras().then((value) {
     CameraOptions.list = value;
 
@@ -52,6 +61,8 @@ void showTimerCamera({
           timerOptionAlignment: timerOptionAlignment,
           timerOptionStyleParamsModel: timerOptionStyleParamsModel ?? const TimerOptionStyleParamsModel(),
           counterTextStyle: counterTextStyle,
+          timerOptions: timerOptions,
+          defaultTimerOptionIndex: defaultTimerOptionIndex,
         ),
       ),
     );

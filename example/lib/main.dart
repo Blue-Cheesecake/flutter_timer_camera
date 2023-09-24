@@ -53,7 +53,26 @@ class _HomeState extends State<_Home> {
                   },
                 );
               },
-              child: const Text('Open Camera'),
+              child: const Text('Open Camera 1'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                showTimerCamera(
+                  context: context,
+                  defaultTimerOptionIndex: 1,
+                  timerOptions: [
+                    TimerOption(label: 'zero', startCounter: 0),
+                    TimerOption(label: '5sec', startCounter: 5),
+                    TimerOption(label: '8sec', startCounter: 8),
+                  ],
+                  onSubmit: (capturedImage) {
+                    setState(() {
+                      currentImage = capturedImage;
+                    });
+                  },
+                );
+              },
+              child: const Text('Open Camera 2'),
             ),
             currentImage == null
                 ? const SizedBox.shrink()
