@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../utils/utils.dart';
+import 'timer_option.dart';
 
 part 'timer_option_model.freezed.dart';
 
@@ -52,5 +53,9 @@ class TimerOptionModel with _$TimerOptionModel {
       default:
         return TimerOptionModel.none();
     }
+  }
+
+  factory TimerOptionModel.fromUserTimer({required TimerOption option, required int indicator}) {
+    return TimerOptionModel(label: option.label, startCounter: option.startCounter, indicator: indicator);
   }
 }
