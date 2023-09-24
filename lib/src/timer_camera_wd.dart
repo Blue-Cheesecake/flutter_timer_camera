@@ -8,6 +8,7 @@ class TimerCamera extends StatelessWidget {
   const TimerCamera({
     required this.onSubmit,
     required this.timerOptionStyleParamsModel,
+    required this.defaultTimerOptionIndex,
     this.onCameraAccessDenied,
     // this.imageFormatGroup,
     // this.resolutionPreset,
@@ -22,6 +23,7 @@ class TimerCamera extends StatelessWidget {
     this.onCapturedButton,
     this.timerOptionAlignment,
     this.counterTextStyle,
+    this.timerOptions,
     Key? key,
   }) : super(key: key);
 
@@ -88,6 +90,17 @@ class TimerCamera extends StatelessWidget {
   ///
   final TextStyle? counterTextStyle;
 
+  /// The List of TimerOption that will be displayed on [CameraScreenWD]
+  ///
+  /// The position of timer will be displayed from left to right.
+  ///
+  /// If this's not provided, the default option will be used
+  final List<TimerOption>? timerOptions;
+
+  /// The default index for Timer list
+  ///
+  final int defaultTimerOptionIndex;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -137,6 +150,8 @@ class TimerCamera extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 120),
                 child: CameraTimerOptionsWD(
                   timerOptionStyleParams: timerOptionStyleParamsModel,
+                  timerOptions: timerOptions,
+                  defaultTimerOptionIndex: defaultTimerOptionIndex,
                 ),
               ),
             )
