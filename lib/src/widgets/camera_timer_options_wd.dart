@@ -49,18 +49,18 @@ class _CameraTimerOptionsWDState extends ConsumerState<CameraTimerOptionsWD> {
     isUseDefaultChildren = widget.timerOptions == null;
     timerOptionModelsClient = [];
 
-    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      /// Convert [TimerOption] into [TimerOptionModel]
-      ///
-      if (widget.timerOptions != null) {
-        for (int i = 0; i < widget.timerOptions!.length; i++) {
-          final timerOptionClient = widget.timerOptions![i];
-          timerOptionModelsClient.add(
-            TimerOptionModel.fromUserTimer(option: timerOptionClient, indicator: i + 1),
-          );
-        }
+    /// Convert [TimerOption] into [TimerOptionModel]
+    ///
+    if (widget.timerOptions != null) {
+      for (int i = 0; i < widget.timerOptions!.length; i++) {
+        final timerOptionClient = widget.timerOptions![i];
+        timerOptionModelsClient.add(
+          TimerOptionModel.fromUserTimer(option: timerOptionClient, indicator: i + 1),
+        );
       }
+    }
 
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       // update the index
       _updateTimerIndicator(value: widget.defaultTimerOptionIndex + 1);
     });
@@ -117,6 +117,8 @@ class _CameraTimerOptionsWDState extends ConsumerState<CameraTimerOptionsWD> {
     return const TextStyle(fontSize: 13, color: Colors.white);
   }
 
+  /// Handling update timer indicator by passed 1-based value
+  ///
   void _updateTimerIndicator({required int value}) {
     if (isUseDefaultChildren) {
       ref
