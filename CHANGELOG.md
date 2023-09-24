@@ -1,8 +1,12 @@
+## 1.0.2
+* Allow user to pass `TimerOption` List
+* Allow user to select initial `TimerOption` by default index
+
 ## 1.0.1
 
-* Implement BackButton widget which corresponds to Camera state. If on nomal, show BackButtonOnNormal. If on captured, show BackButtonOnCaptured.
+* Implement `BackButton` widget which corresponds to Camera state. If on nomal, show `BackButtonOnNormal`. If on captured, show `BackButtonOnCaptured`.
 * Fix incorrect use of switchButtonStyle param.
-* Enable user to pass customer BackButton widget corresponding to state.
+* Enable user to pass customer `BackButton` widget corresponding to state.
 
 ## 1.0.0
 
