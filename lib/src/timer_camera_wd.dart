@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 import 'models/models.dart';
@@ -10,8 +11,8 @@ class TimerCamera extends StatelessWidget {
     required this.timerOptionStyleParamsModel,
     required this.defaultTimerOptionIndex,
     this.onCameraAccessDenied,
-    // this.imageFormatGroup,
-    // this.resolutionPreset,
+    this.imageFormatGroup,
+    this.resolutionPreset,
     this.imageFit,
     this.backButtonOnNormal,
     this.backButtonOnCaptured,
@@ -101,6 +102,15 @@ class TimerCamera extends StatelessWidget {
   ///
   final int defaultTimerOptionIndex;
 
+  /// The resolution preset of image
+  /// default to [ResolutionPreset.ultraHigh]
+  ///
+  final ResolutionPreset? resolutionPreset;
+
+  /// The image format group
+  /// default to [ImageFormatGroup.yuv420]
+  final ImageFormatGroup? imageFormatGroup;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -124,8 +134,8 @@ class TimerCamera extends StatelessWidget {
           children: [
             CameraScreenWD(
               onCameraAccessDenied: onCameraAccessDenied,
-              // resolutionPreset: resolutionPreset,
-              // imageFormatGroup: imageFormatGroup,
+              resolutionPreset: resolutionPreset,
+              imageFormatGroup: imageFormatGroup,
               imageFit: imageFit,
             ),
             Align(
