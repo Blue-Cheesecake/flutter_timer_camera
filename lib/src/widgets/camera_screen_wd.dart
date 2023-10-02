@@ -9,7 +9,7 @@ import '../logic/logic.dart';
 import '../utils/utils.dart';
 import 'widgets.dart';
 
-class CameraScreenWD extends ConsumerWidget {
+class CameraScreenWD extends ConsumerStatefulWidget {
   const CameraScreenWD({
     this.onCameraAccessDenied,
     this.resolutionPreset,
@@ -24,7 +24,24 @@ class CameraScreenWD extends ConsumerWidget {
   final BoxFit? imageFit;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<CameraScreenWD> createState() => _CameraScreenWDState();
+}
+
+class _CameraScreenWDState extends ConsumerState<CameraScreenWD> {
+  @override
+  void initState() {
+    super.initState();
+
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      ref.read(timerCameraStateProvider.notifier).updateCameraController(
+            resolutionPreset: widget.resolutionPreset,
+            imageFormatGroup: widget.imageFormatGroup,
+          );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final XFile? capturedImage = ref.watch(timerCameraStateProvider.select((value) => value.capturedImage));
 
     if (capturedImage != null) {
@@ -33,7 +50,7 @@ class CameraScreenWD extends ConsumerWidget {
           File(capturedImage.path),
           width: constraints.maxWidth,
           height: constraints.maxHeight,
-          fit: imageFit ?? BoxFit.cover,
+          fit: widget.imageFit ?? BoxFit.cover,
         ),
       );
     }
@@ -50,7 +67,7 @@ class CameraScreenWD extends ConsumerWidget {
       if (e is CameraException) {
         switch (e.code) {
           case 'CameraAccessDenied':
-            if (onCameraAccessDenied != null) onCameraAccessDenied!();
+            if (widget.onCameraAccessDenied != null) widget.onCameraAccessDenied!();
             return;
           default:
             break;
