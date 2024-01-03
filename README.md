@@ -1,18 +1,18 @@
 # Flutter timer camera
 
-A Flutter package that allows you to open the camera and capture images with a timer logic. Perfect for those moments when you need a delay before the shot!
+A Flutter package that allows you to open the camera and capture images with a timer logic.
 
 || Android      | iOS |
 |----| ----------- | ----------- |
 | **Support** | SDK 21+      | iOS 11.0 +       |
 
 
-*we support only thess version since this package adopts the `camera` plugin*
+*we support only these versions since this package adopts the `camera` plugin*
 
 ## Features
 - Open the customized camera directly from Flutter app.
 - Set a timer to delay the capture.
-- Switch Camera front and back.
+- Switch camera front and back.
 
 ## Installation
 
@@ -67,7 +67,7 @@ ElevatedButton(
 
 ## Contributing
 
-Any kind of pull requests are welcome.Feel free to fork the project, open issues, and submit PRs.
+Any kind of pull requests are welcome. Feel free to fork the project, open issues, and submit PRs.
 
 ## License
 
