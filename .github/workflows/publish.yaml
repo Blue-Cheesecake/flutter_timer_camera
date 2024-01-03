@@ -14,11 +14,11 @@ jobs:
         with:
           flutter-version: "3.13.0"
       - name: Install dependencies
-        uses: flutter pub get
+        run: flutter pub get
       - name: Analyze
-        uses: flutter analyze
+        run: flutter analyze
       - name: Check publish warnings
-        uses: dart pub publish --dry-run
+        run: dart pub publish --dry-run
       - name: Publish
         uses: k-paxian/dart-package-publisher@v1.5.1
         with:
