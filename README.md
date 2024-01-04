@@ -1,13 +1,13 @@
 <p align="left">
   <span> </span>
-  <img src="./doc/images/poster.png" height="400">
+  <img src="https://github.com/Blue-Cheesecake/flutter_timer_camera/blob/main/doc/images/poster.png?raw=true" height="400">
 </p>
 
 # Flutter Timer Camera
 
 A Flutter package that allows you to open the camera and capture image with a timer logic.
 
- <img src="./doc/gif/demo.gif" height="280">
+ <img src="https://github.com/Blue-Cheesecake/flutter_timer_camera/blob/main/doc/gif/demo.gif?raw=true" height="280">
 
 || Android      | iOS |
 |----| ----------- | ----------- |
