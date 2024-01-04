@@ -27,8 +27,7 @@ void showTimerCamera({
   final TextStyle? counterTextStyle,
   final List<TimerOption>? timerOptions,
   final int defaultTimerOptionIndex = 0,
-  final bool isScrollControlled = false,
-  final bool useSafeArea = false,
+  final bool useSafeArea = true,
   final bool isDismissble = true,
   final bool useRootNavigator = false,
 }) async {
@@ -45,10 +44,15 @@ void showTimerCamera({
     showModalBottomSheet(
       context: context,
       enableDrag: enableDrag,
-      isScrollControlled: isScrollControlled,
+      isScrollControlled: true,
       useSafeArea: useSafeArea,
       isDismissible: isDismissble,
       useRootNavigator: useRootNavigator,
+      barrierColor: Colors.black,
+      backgroundColor: Colors.black,
+      shape: const RoundedRectangleBorder(
+        side: BorderSide(width: 1, color: Colors.black),
+      ),
       builder: (context) => ProviderScope(
         child: TimerCamera(
           onSubmit: onSubmit,

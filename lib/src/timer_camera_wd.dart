@@ -103,61 +103,56 @@ class TimerCamera extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          leading: BackButtonWD(
-            childOnNormal: backButtonOnNormal,
-            childOnCaptured: backButtonOnCaptured,
-          ),
-          actions: [
+    return Stack(
+      children: [
+        CameraScreenWD(
+          onCameraAccessDenied: onCameraAccessDenied,
+          // resolutionPreset: resolutionPreset,
+          // imageFormatGroup: imageFormatGroup,
+          imageFit: imageFit,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            BackButtonWD(
+              childOnNormal: backButtonOnNormal,
+              childOnCaptured: backButtonOnCaptured,
+            ),
             SwitchCameraButtonWD(
               buttonStyle: switchCameraButtonStyle,
               child: switchCameraButton,
             )
           ],
-          backgroundColor: Colors.transparent,
-          elevation: 0,
         ),
-        extendBodyBehindAppBar: true,
-        body: Stack(
-          children: [
-            CameraScreenWD(
-              onCameraAccessDenied: onCameraAccessDenied,
-              // resolutionPreset: resolutionPreset,
-              // imageFormatGroup: imageFormatGroup,
-              imageFit: imageFit,
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: CounterWD(textStyle: counterTextStyle),
-            ),
-            Align(
-              alignment: captureButtonAlignment ?? Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 35),
-                child: CaptureButtonWD(
-                  onSubmit: onSubmit,
-                  childOnNormal: onNormalButton,
-                  childOnCounting: onCountingButton,
-                  childOnCaptured: onCapturedButton,
-                ),
-              ),
-            ),
-            Align(
-              alignment: timerOptionAlignment ?? Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 120),
-                child: CameraTimerOptionsWD(
-                  timerOptionStyleParams: timerOptionStyleParamsModel,
-                  timerOptions: timerOptions,
-                  defaultTimerOptionIndex: defaultTimerOptionIndex,
-                ),
-              ),
-            )
-          ],
+        Align(
+          alignment: Alignment.center,
+          child: CounterWD(textStyle: counterTextStyle),
         ),
-      ),
+        Align(
+          alignment: captureButtonAlignment ?? Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 35),
+            child: CaptureButtonWD(
+              onSubmit: onSubmit,
+              childOnNormal: onNormalButton,
+              childOnCounting: onCountingButton,
+              childOnCaptured: onCapturedButton,
+            ),
+          ),
+        ),
+        Align(
+          alignment: timerOptionAlignment ?? Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 120),
+            child: CameraTimerOptionsWD(
+              timerOptionStyleParams: timerOptionStyleParamsModel,
+              timerOptions: timerOptions,
+              defaultTimerOptionIndex: defaultTimerOptionIndex,
+            ),
+          ),
+        )
+      ],
     );
   }
 }
