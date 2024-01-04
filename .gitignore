@@ -31,7 +31,7 @@ build/
 
 # IDE
 .idea/
-.vscode/
+.vscode/launch.json
 
 # FVM
 .fvm/

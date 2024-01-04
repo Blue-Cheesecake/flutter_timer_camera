@@ -26,6 +26,7 @@ class SwitchCameraButtonWD extends ConsumerWidget {
           const Icon(
             Icons.sync_outlined,
             size: 25,
+            color: Colors.white,
           ),
     );
   }
