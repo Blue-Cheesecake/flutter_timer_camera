@@ -10,8 +10,6 @@ class TimerCamera extends StatelessWidget {
     required this.timerOptionStyleParamsModel,
     required this.defaultTimerOptionIndex,
     this.onCameraAccessDenied,
-    // this.imageFormatGroup,
-    // this.resolutionPreset,
     this.imageFit,
     this.backButtonOnNormal,
     this.backButtonOnCaptured,
@@ -24,8 +22,12 @@ class TimerCamera extends StatelessWidget {
     this.timerOptionAlignment,
     this.counterTextStyle,
     this.timerOptions,
-    Key? key,
-  }) : super(key: key);
+    this.captureButtonPaddingHeight,
+    this.timerOptionPaddingHeight,
+    this.counterTextAlignment,
+    this.actionsButtonPadding,
+    super.key,
+  });
 
   /// The callback function after successfully capturing image
   ///
@@ -36,9 +38,6 @@ class TimerCamera extends StatelessWidget {
   /// Callback function that is triggered when try to open camera with unauthorized access.
   ///
   final VoidCallback? onCameraAccessDenied;
-
-  // final ResolutionPreset? resolutionPreset;
-  // final ImageFormatGroup? imageFormatGroup;
 
   /// Specifies how the captured image should fit within the bounds of the camera view.
   ///
@@ -101,6 +100,22 @@ class TimerCamera extends StatelessWidget {
   ///
   final int defaultTimerOptionIndex;
 
+  /// The padding height of capture button from bottom
+  ///
+  final double? captureButtonPaddingHeight;
+
+  /// The padding height of timer option from captured bottom
+  ///
+  final double? timerOptionPaddingHeight;
+
+  /// The alignment of counter text
+  ///
+  final Alignment? counterTextAlignment;
+
+  /// The padding of actions button
+  ///
+  final EdgeInsetsGeometry? actionsButtonPadding;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -111,47 +126,50 @@ class TimerCamera extends StatelessWidget {
           // imageFormatGroup: imageFormatGroup,
           imageFit: imageFit,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            BackButtonWD(
-              childOnNormal: backButtonOnNormal,
-              childOnCaptured: backButtonOnCaptured,
-            ),
-            SwitchCameraButtonWD(
-              buttonStyle: switchCameraButtonStyle,
-              child: switchCameraButton,
-            )
-          ],
+        Padding(
+          padding: actionsButtonPadding ?? EdgeInsets.zero,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              BackButtonWD(
+                childOnNormal: backButtonOnNormal,
+                childOnCaptured: backButtonOnCaptured,
+              ),
+              SwitchCameraButtonWD(
+                buttonStyle: switchCameraButtonStyle,
+                child: switchCameraButton,
+              )
+            ],
+          ),
         ),
         Align(
-          alignment: Alignment.center,
+          alignment: counterTextAlignment ?? Alignment.center,
           child: CounterWD(textStyle: counterTextStyle),
         ),
         Align(
           alignment: captureButtonAlignment ?? Alignment.bottomCenter,
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 35),
-            child: CaptureButtonWD(
-              onSubmit: onSubmit,
-              childOnNormal: onNormalButton,
-              childOnCounting: onCountingButton,
-              childOnCaptured: onCapturedButton,
+            padding: EdgeInsets.only(bottom: captureButtonPaddingHeight ?? 35),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CameraTimerOptionsWD(
+                  timerOptionStyleParams: timerOptionStyleParamsModel,
+                  timerOptions: timerOptions,
+                  defaultTimerOptionIndex: defaultTimerOptionIndex,
+                ),
+                SizedBox(height: timerOptionPaddingHeight ?? 20),
+                CaptureButtonWD(
+                  onSubmit: onSubmit,
+                  childOnNormal: onNormalButton,
+                  childOnCounting: onCountingButton,
+                  childOnCaptured: onCapturedButton,
+                ),
+              ],
             ),
           ),
         ),
-        Align(
-          alignment: timerOptionAlignment ?? Alignment.bottomCenter,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 120),
-            child: CameraTimerOptionsWD(
-              timerOptionStyleParams: timerOptionStyleParamsModel,
-              timerOptions: timerOptions,
-              defaultTimerOptionIndex: defaultTimerOptionIndex,
-            ),
-          ),
-        )
       ],
     );
   }
