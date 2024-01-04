@@ -19,6 +19,7 @@ class BackButtonOnCapturedWD extends ConsumerWidget {
           const Icon(
             Icons.keyboard_arrow_left_rounded,
             size: 30,
+            color: Colors.white,
           ),
     );
   }

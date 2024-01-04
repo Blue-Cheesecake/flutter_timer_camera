@@ -16,6 +16,7 @@ class BackButtonOnNormalWD extends StatelessWidget {
           const Icon(
             Icons.close,
             size: 30,
+            color: Colors.white,
           ),
     );
   }
