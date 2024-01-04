@@ -122,8 +122,6 @@ class TimerCamera extends StatelessWidget {
       children: [
         CameraScreenWD(
           onCameraAccessDenied: onCameraAccessDenied,
-          // resolutionPreset: resolutionPreset,
-          // imageFormatGroup: imageFormatGroup,
           imageFit: imageFit,
         ),
         Padding(

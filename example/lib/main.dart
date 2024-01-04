@@ -46,7 +46,7 @@ class _HomeState extends State<_Home> {
               onPressed: () {
                 showTimerCamera(
                   context: context,
-                  onSubmit: (capturedImage) {
+                  onSubmit: (XFile? capturedImage) {
                     setState(() {
                       currentImage = capturedImage;
                     });

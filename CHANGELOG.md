@@ -1,3 +1,11 @@
+## 1.0.3
+* Fix ugly modal bottom sheet UI
+* Allow more parameters to be passsed
+  * capture button padding
+  * timer option padding
+  * counter text alignment
+  * action buttons padding
+
 ## 1.0.2
 * Allow user to pass `TimerOption` List
 * Allow user to select initial `TimerOption` by default index
