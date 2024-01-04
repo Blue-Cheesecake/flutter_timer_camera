@@ -27,6 +27,10 @@ void showTimerCamera({
   final TextStyle? counterTextStyle,
   final List<TimerOption>? timerOptions,
   final int defaultTimerOptionIndex = 0,
+  final bool isScrollControlled = false,
+  final bool useSafeArea = false,
+  final bool isDismissble = true,
+  final bool useRootNavigator = false,
 }) async {
   if (timerOptions != null) {
     assert(defaultTimerOptionIndex < timerOptions.length);
@@ -41,8 +45,10 @@ void showTimerCamera({
     showModalBottomSheet(
       context: context,
       enableDrag: enableDrag,
-      isScrollControlled: true,
-      useSafeArea: true,
+      isScrollControlled: isScrollControlled,
+      useSafeArea: useSafeArea,
+      isDismissible: isDismissble,
+      useRootNavigator: useRootNavigator,
       builder: (context) => ProviderScope(
         child: TimerCamera(
           onSubmit: onSubmit,
